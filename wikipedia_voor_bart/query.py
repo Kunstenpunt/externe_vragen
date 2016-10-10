@@ -17,33 +17,35 @@ knst_cur = knst.cursor()
 # productie verbonden zijn, als het kan ook met een count van het aantal relaties met een productie.
 
 sql = """
-SELECT DISTINCT
-  production.organisations.name
+SELECT
+  organisations.name,
+  count(production.productions.id)
 FROM
   production.organisations,
-  production.countries,
   production.productions,
   production.relationships,
+  production.seasons,
   production.functions,
-  production.date_isaars
+  production.countries
 WHERE
-  organisations.country_id = countries.id AND
   organisations.id = relationships.organisation_id AND
+  organisations.country_id = countries.id AND
+  productions.season_id = seasons.id AND
   relationships.production_id = productions.id AND
-  relationships.function_id = functions.id AND
-  date_isaars.id = productions.begin_date_id AND
-  countries.name_en = 'Belgium' AND
-  (functions.name_nl = 'gezelschap' OR
-  functions.name_nl = 'producent') AND
-  date_isaars.year >= 1993;
+  functions.id = relationships.function_id AND
+  seasons.start_year >= 1993 AND
+  functions.name_nl IN ('gezelschap', 'producent') AND
+  countries.name_en = 'Belgium'
+GROUP BY
+  production.organisations.name
 """
 
 lijst_van_organisaties = []
 knst_cur.execute(sql)
 for row in knst_cur.fetchall():
-    lijst_van_organisaties.append(row[0])
+    lijst_van_organisaties.append(list(row))
 
-DataFrame(lijst_van_organisaties, columns=["Lijst van organisaties"]).to_csv("lijst_van_organisaties.csv")
+DataFrame(lijst_van_organisaties, columns=["Lijst van organisaties", "Count van producties"]).to_csv("lijst_van_organisaties.csv")
 
 # lijst van alle personen die aan deze producties (1) verbonden zijn
 
@@ -52,31 +54,33 @@ SELECT DISTINCT
   production.productions.id
 FROM
   production.organisations,
-  production.countries,
   production.productions,
   production.relationships,
+  production.seasons,
   production.functions,
-  production.date_isaars
+  production.countries
 WHERE
-  organisations.country_id = countries.id AND
   organisations.id = relationships.organisation_id AND
+  organisations.country_id = countries.id AND
+  productions.season_id = seasons.id AND
   relationships.production_id = productions.id AND
-  relationships.function_id = functions.id AND
-  date_isaars.id = productions.begin_date_id AND
-  countries.name_en = 'Belgium' AND
-  (functions.name_nl = 'gezelschap' OR
-  functions.name_nl = 'producent') AND
-  date_isaars.year >= 1993;
+  functions.id = relationships.function_id AND
+  seasons.start_year >= 1993 AND
+  functions.name_nl IN ('gezelschap', 'producent') AND
+  countries.name_en = 'Belgium'
 """
 
 personen = set()
 
 knst_cur.execute(sql)
 producties = knst_cur.fetchall()
-for productionid in producties:
+for i, productionid in enumerate(producties):
+    if i % 1000 == 0:
+        print(i, "of", len(producties))
     sql = """
     SELECT
-      people.full_name
+      people.full_name,
+      count(production.productions.id)
     FROM
       production.productions,
       production.relationships,
@@ -84,10 +88,12 @@ for productionid in producties:
     WHERE
       relationships.production_id = productions.id AND
       people.id = relationships.person_id AND
-      productions.id = {0};
+      productions.id = {0}
+    GROUP BY
+      production.people.full_name;
     """.format(productionid[0])
     knst_cur.execute(sql)
     for row in knst_cur.fetchall():
-        personen.add(row[0])
+        personen.add(row)
 
-DataFrame(list(personen), columns=["Lijst van personen"]).to_csv("lijst_van_personen.csv")
+DataFrame(list(personen), columns=["Lijst van personen", "Aantal producties"]).to_csv("lijst_van_personen.csv")

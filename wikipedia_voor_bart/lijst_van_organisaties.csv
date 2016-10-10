@@ -1,130 +1,1141 @@
-,Lijst van organisaties
-0,4Hoog Productiehuis
-1,A Two Dogs Company
-2,ARType vzw
-3,Abattoir Fermé
-4,Action Scénique
-5,Action Zoo Humain
-6,Anna's Steen
-7,Athome
-8,Aventura Musica
-9,B'Rock Orchestra
-10,BRONKS
-11,BRUT
-12,Ballet Vlaanderen
-13,Berlin
-14,Bloet
-15,Busy Rocks
-16,Bâtard
-17,CAMPO
-18,CREW_eric joris
-19,Caravan Production
-20,Cie Artara
-21,Cie Pol & Freddy
-22,Cie Tartaren
-23,Cie. Covar
-24,Cinderella
-25,Compagnie Barbarie
-26,Compagnie Cecilia
-27,Compagnie Frieda
-28,Compagnie Monica
-29,Compagnie de Koe
-30,Compagnie des Mutants
-31,Corpus ca.
-32,Curtain Call Productions
-33,DE KOLONIE MT
-34,DE MAAN
-35,Damaged Goods
-36,De Erfgenamen van Pia Fraus
-37,De Mannschaft
-38,De Munt/La Monnaie
-39,De Nwe Tijd
-40,Duchamps
-41,Eastman
-42,Ensemble Leporello
-43,Fernweh
-44,GoodMove
-45,Grensgeval
-46,HETGEVOLG
-47,HETPALEIS
-48,HIROS
-49,Het Kwartier
-50,Het nieuwstedelijk
-51,Hiatus
-52,JAN vzw
-53,Jan Fabre - Troubleyn
-54,Jan Martens/GRIP
-55,JazzLab Series
-56,KOPERGIETERY
-57,Kinderenvandevilla
-58,Kloppend Hert
-59,Koninklijke Vlaamse Schouwburg - KVS
-60,Kopseer
-61,Kosmonaut Production
-62,Kunst/Werk
-63,LAZARUS
-64,LOD
-65,Laika
-66,Les SlovaKs Dance Collective
-67,Maelstrom
-68,MaisonDahlBonnema
-69,Mambocito Mio
-70,Mars
-71,MartHa!tentatief
-72,Mennomichieljozef vzw
-73,Monty
-74,Moussem vzw
-75,Muziektheater Transparant
-76,NTGent
-77,Nada & Co
-78,Nat Gras
-79,Needcompany
-80,Olympique Dramatique
-81,Ontroerend Goed
-82,Opera Vlaanderen
-83,Pantalone
-84,Peeping Tom
-85,Petri Dish
-86,Phare Est
-87,Phileas Productions
-88,Pianofabriek
-89,Platform 0090
-90,Platform-K vzw
-91,Post uit Hessdalen
-92,RUDA asbl
-93,Rataplan vzw
-94,Robbert&Frank/Frank&Robbert
-95,Rooftoptiger
-96,SPIN
-97,STUK Kunstencentrum vzw
-98,School of Arts - KASK DRAMA
-99,Sermoen Theatermakers
-100,Tal en Thee
-101,Theater De Spiegel
-102,Theater Froe Froe
-103,Theater Tieret
-104,Theater Zuidpool
-105,Theatercollectief Raf
-106,Theaterwerkplaats NEST
-107,Théâtre des 4 mains
-108,Tibaldus en andere hoeren
-109,Toneelgroep Nunc
-110,Toneelhuis
-111,Tristero
-112,Tuning people
-113,Ulti'mates / Ultima Vez
-114,Ultima Thule
-115,Victoria Deluxe
-116,Villanella
-117,WALPURGIS
-118,WArd/WaRD
-119,ZOO
-120,Zonzo Cie.
-121,de Roovers
-122,fABULEUS
-123,fieldworks vzw
-124,het KIP
-125,luxemburg
-126,"t,arsenaal"
-127,tg STAN
-128,wpZimmer
+,Lijst van organisaties,Count van producties
+0,Action Scénique,30
+1,Rimlight Productions vzw,1
+2,Sabbattini Mimetheater,11
+3,Stichting de MOL,5
+4,Cie Greffe,5
+5,Koninklijke Vlaamse Schouwburg - KVS,320
+6,Triptych,2
+7,Asansör,2
+8,Compagnie Circ'Ombelico,4
+9,Cie TransatlantiK,1
+10,Museum M,2
+11,Joinda,1
+12,JAN vzw,14
+13,Don't forget to be noir,1
+14,Mahaworks,2
+15,Hardscore,2
+16,Big in Belgium,1
+17,Sint-Lucas Architectuur,1
+18,Eigentijdse Werkgroep Teater (EWT),41
+19,Blauw Vier,47
+20,Evaporation,1
+21,De Forenzen vzw,1
+22,Ballet Najade vzw,2
+23,De Bank,22
+24,Nadine,30
+25,Mulder & De Roeck,1
+26,De Mannschaft,2
+27,Bodyrefuse,1
+28,Circo Ripopolo,5
+29,Het Gouden Hart,4
+30,Théâtre de Galafronie,1
+31,Wolvin vzw,3
+32,LAZARUS,33
+33,Werktank,1
+34,Nederlands Toneel Gent,79
+35,Theater Antigone,146
+36,Maquette vzw,3
+37,KunstZ,15
+38,Mechels Jeugdtheater,6
+39,de Filmfabriek,12
+40,Théâtre des 4 mains,3
+41,Teater Prometheus,1
+42,Rubus Productions,2
+43,De gebroeders Boudewijn,8
+44,into ici,2
+45,Theater Teater,12
+46,Barrik Barrak,2
+47,Ultima Thule,105
+48,"Wo Bist, Ist",1
+49,Action Zoo Humain,19
+50,Eftuentafel,1
+51,Brasart,1
+52,Wortel,1
+53,Babelut,4
+54,Eisbär,8
+55,Usage Externe,1
+56,Playground,1
+57,SINCOLLECTIEF,13
+58,Sandberg,1
+59,JazzLab Series,2
+60,Theater Mutant,2
+61,CC De Ploter,3
+62,Kommil Foo,8
+63,De kleine expeditie,1
+64,Tank!,7
+65,Eve vzw/asbl,4
+66,Teater Pepijn,20
+67,Koninklijke poppenschouwburg Van Campen,17
+68,Platform-K vzw,11
+69,Nabla vzw,1
+70,Woesh,6
+71,Theater Stap,72
+72,Wiels,3
+73,Cie. Covar,5
+74,Los cojones del toro,6
+75,Liaisons dangereuses,3
+76,Les SlovaKs Dance Collective,16
+77,wpZimmer,106
+78,Théâtre de la Place,1
+79,De vrije radicalen,2
+80,Dust Timing vzw,1
+81,Artesis - Koninklijk Conservatorium Campus Studio,5
+82,Vlinders,1
+83,Maison du Spectacle - la Bellone,1
+84,Latrinité,9
+85,Klara,2
+86,Hogeschool Gent - Koninklijke Academie voor Schone Kunsten (K.A.S.K.),7
+87,Collectief Theater Hart,2
+88,CC Strombeek,2
+89,Koninklijke Nederlandse Schouwburg,14
+90,Toneelgroep Nunc,34
+91,HETPALEIS,288
+92,Radical Low / CYZ,10
+93,Thakafa 11,2
+94,CC De Velinx,9
+95,Muziektheater van Zilverpapier,12
+96,De Verwondering,3
+97,AMUZ,1
+98,Torka T.,13
+99,Rebecca September,5
+100,Opera XXI,2
+101,Berlin,56
+102,Zamzam,7
+103,JESSA,6
+104,E.L.S.,1
+105,Joe Baele,1
+106,Théâtre Epique,1
+107,Recyclart,2
+108,Cie Tartaren,19
+109,Kunstencentrum Belgie,23
+110,Radical HeArts vzw,5
+111,Stad Leuven,1
+112,Casa Blanca,2
+113,Nova Zembla,20
+114,GoodMove,30
+115,De Ingebeelden,1
+116,Wolff,4
+117,Brussels Philharmonic - Vlaams Radio Orkest,1
+118,B'Rock Orchestra,9
+119,Comp.Marius,53
+120,Prefab,1
+121,Brugge 2002,4
+122,KOPERGIETERY,226
+123,fieldworks vzw,32
+124,BOX-Baroque Orchestration X,1
+125,Studio Herman Teirlinck,78
+126,Het Toneelhuis,147
+127,Internationale Nieuwe Scène,48
+128,Compagnie 3637,4
+129,Silence Fini,5
+130,Museum Plantin-Moretus,1
+131,On location asbl,1
+132,Mister Wolf,3
+133,Wurre Wurre,10
+134,Inti vzw,16
+135,vzw Jean et Mar,1
+136,XL productions,6
+137,Danscompagnie Francine De Veylder,1
+138,Cie. Coup Contrecoup,6
+139,Vanelle,5
+140,Haute Coiffure,3
+141,Jeugd en Muziek Vlaanderen,7
+142,Ink,2
+143,Limoges vzw,1
+144,Le Bjarne Riss Ensemble,8
+145,Theater Herman Verbeeck,7
+146,Invasif vzw,6
+147,Busy Rocks,25
+148,Wereldculturencentrum Zuiderpershuis,25
+149,Kaaiman,16
+150,Internationaal Straattheaterfestival vzw,8
+151,Don Bosco Instituut,1
+152,ATOM vzw,3
+153,BNA-BBOT (Bruxelles nous appartient - Brussel behoort ons toe),1
+154,De Vere,2
+155,Pyramide op de punt,4
+156,BRONKS,204
+157,Vzw Firma De Proost en De Beck & zn,1
+158,Collectif Borborygme,1
+159,Theater Tartaar,11
+160,Contrecoeur,24
+161,Ambachtelijk Collectief Trompet,1
+162,Nachtkrab,1
+163,Mouton Panurge,1
+164,Fort 33,4
+165,Noordteater,3
+166,Cie. Abaroa,3
+167,deFilharmonie,5
+168,Schoora/Lippold,5
+169,MartHa!tentatief,66
+170,Kunstencollectief Chahoula vzw,3
+171,Tal en Thee,19
+172,Great investment,35
+173,Plankton Hotel,11
+174,REFUG-collective,2
+175,Toneelhuis,177
+176,Roberto Oliván,2
+177,Dastheater,29
+178,Random Scream,19
+179,Festival van Vlaanderen Gent,3
+180,Compagnie Mossoux-Bonté,2
+181,Latent Fuss,1
+182,Jongerentheatercollectief Dagsoep,1
+183,Emanon Ensemble,4
+184,het GEIT,5
+185,Fernweh,8
+186,WArd/WaRD,48
+187,Alexander Baervoets / Azuur,22
+188,XL Productions - Theaterimpresariaat XL & Lapinne,1
+189,SOIT,28
+190,ZET 6,1
+191,Action Malaise,14
+192,Capitool,1
+193,Cie Pol & Freddy,9
+194,Barre Weldaad,53
+195,Theater De Korre,29
+196,Speelteater Gent,77
+197,Gezelschap van de Schone Schijn,4
+198,Operastudio Vlaanderen,12
+199,Collectief Broom,2
+200,DE DAGEN,3
+201,Black Vlaming,1
+202,Tristero,88
+203,De Dulle Roeckers,8
+204,tok toc knock,2
+205,Het Manifest,2
+206,House Crying Yellow Tears,3
+207,Maison de la Culture de Tournai,4
+208,Chiclaboebp,1
+209,Multatuli Theater,4
+210,Mokum vzw,39
+211,Theater de Waanzin,9
+212,the great indoors,4
+213,Victoria,167
+214,De Theaterwerkplaats (PCT Dommelhof),17
+215,Eric Raeves,13
+216,Drie Pees,10
+217,Mestizo Arts Festival,8
+218,TG Vagevuur,14
+219,KULeuven - Instituut voor Culturele Studies,1
+220,De Zinderij,2
+221,Brussels Brecht-Eislerkoor,1
+222,Branch Nebula,3
+223,Kung Fu,3
+224,Muzaïk,1
+225,Open Living,3
+226,De Furie,4
+227,Figurentheater De Maan,105
+228,Perignem vzw,1
+229,Wayn Traub,13
+230,Teater Zwarte Meeuw,4
+231,The Primitives,13
+232,KoudVuur,3
+233,Theater aan de Stroom,39
+234,Commission art numérique,1
+235,Le Groupe Sanguin,1
+236,Free Art Dance Co,1
+237,Krikri,2
+238,Artesis Hogeschool Antwerpen,2
+239,Compagnie Jose Besprosvany,1
+240,Het Gerucht,1
+241,Les Fontenelles,1
+242,De Veerman,3
+243,Fond de Teint,1
+244,Janus-Ensemble,17
+245,Amgod,7
+246,Lucilia Caesar,2
+247,Phileas Productions,17
+248,Kurt Defrancq,2
+249,Buelens Paulina vzw,30
+250,CC De Spil,4
+251,Ozeddoe,2
+252,Hogeschool Antwerpen / Herman Teirlinck Instituut,38
+253,Listopa Dancetheatre,1
+254,De kakkewieten,6
+255,A Two Dogs Company,21
+256,Het Bos,2
+257,Jenny,4
+258,In Utero,4
+259,Riina Saastamoinen,2
+260,Alkyonis,7
+261,The Other,33
+262,Bâtard,4
+263,CC Gildhof,1
+264,Rhythm Naturals,1
+265,Peeping Tom,36
+266,Tocht,4
+267,Hendrik & Co,3
+268,Kopspel,4
+269,Agartha,1
+270,Slow-up vzw,1
+271,Spielmann vzw,1
+272,Theaterwetenschappen Leuven,1
+273,Wild Schaap,1
+274,Cabra vzw,7
+275,Swan Lake,11
+276,Erfgoedcel Leuven,2
+277,Olympique Dramatique,34
+278,Villanella,86
+279,Les Rêveurs Sont Maltraités,2
+280,fABULEUS,159
+281,Woestijn 93,31
+282,de Bloedgroep,4
+283,Yard Projects vzw,1
+284,dust,1
+285,La Cerisaie,1
+286,Ballet Dommage,6
+287,Leen Roels,2
+288,Delgado Fuchs,1
+289,Theaterbedrijf Het Woud,3
+290,Silowaas 47,3
+291,Theatergezelschap Drie,1
+292,Compagnie Carlotta,25
+293,Moldavië vzw / Randi De Vlieghe,4
+294,Gommorah!,1
+295,Banquine,1
+296,Garden Of Delights,6
+297,CAMPO,127
+298,Erasmushogeschool Brussel / Departement Rits - Dramatische Kunst,149
+299,Compagnie des Mutants,6
+300,Moussem vzw,32
+301,JOC Ieper,1
+302,Sering,39
+303,Vrijstaat O.,7
+304,Cie Baladeu'x,5
+305,Collectief gestrand,1
+306,Sonja Augart & Katrien van Aerschot,1
+307,Ulti'mates / Ultima Vez,6
+308,Het Balkon,1
+309,Villa Basta,1
+310,Theaterwerkgroep Jonna,1
+311,Els De Schepper,4
+312,Festival van Vlaanderen,4
+313,Op.Recht.Mechelen,1
+314,CC De Kern,14
+315,cirQ,1
+316,Publiekstheater,60
+317,Muziektheater De Zwarte Sneeuw,1
+318,Un Oeuf Is Un Oeuf,5
+319,De generaal in zijn tuin,1
+320,Bloedgroep K,3
+321,Anima Eterna,2
+322,Zonzo Cie.,27
+323,Daem Geertrui en de Baes Lieve,1
+324,Roodvonk,4
+325,Tg Schemering,8
+326,Cinderella,14
+327,Tour DeForce,1
+328,Petri Dish,1
+329,Anna's Steen,26
+330,Shalala ehf.,1
+331,Cie Side-Show,3
+332,De Machienerie vzw,1
+333,We Go,13
+334,Twijfel,15
+335,FC Bergman,24
+336,Utopia II,1
+337,Aksident,6
+338,Ell Circo d'ell Feugo,1
+339,Darm vzw,3
+340,Studio Orka,45
+341,Toneel Dora van der Groen,23
+342,Théâtre Praxis,1
+343,Novgorod vzw,1
+344,Teerling - Julien Schoenaerts,3
+345,Victoria Deluxe,29
+346,Mechels Stadspoppentheater,39
+347,Culturele interventies Antwerpen,1
+348,Compagnie Barbarie,14
+349,Compagnie Frieda,20
+350,das marionette,2
+351,Kailash,1
+352,Théâtre de Poche,2
+353,Brugge Plus,3
+354,Rooftoptiger,3
+355,Cie Artara,8
+356,Trudie en August,1
+357,Circus Ronaldo,35
+358,Tine Ruysschaert,21
+359,Theater Taptoe,96
+360,GC De Markten,1
+361,MillenniumProof,2
+362,Garifuna,1
+363,Agency,2
+364,STORMOPKOMST,3
+365,Curtain Call Productions,11
+366,Joji Inc,29
+367,Pantalone,52
+368,Backstage,7
+369,CC De Werf,2
+370,PONI,9
+371,Het Sienjaal,2
+372,Teater 42,29
+373,Jeugdtheater Het Appeltje,5
+374,I Solisti del Vento,7
+375,The Nursery,1
+376,productiehuis padarijs,8
+377,Tinnenpot,1
+378,Bent Object,4
+379,Collectif du Lion,2
+380,Théâtre de Namur,3
+381,Ictus Ensemble vzw,6
+382,Klein verzet vzw,15
+383,Art'oh!,2
+384,Het Zesde Bedrijf,25
+385,HIROS,40
+386,Het Affront / Amana Dance Theatre,16
+387,Next / Herwig De Weerdt,10
+388,Theatermakershuis de Queeste,38
+389,Avec Jan Jib Co,2
+390,Theater Vonk,1
+391,De Figuranten (Stimulans JIAC),16
+392,Muziektheater Transparant,231
+393,Dwama,8
+394,zie!duif,3
+395,Hun-Tun vzw,4
+396,SKaGeN,48
+397,Laika,143
+398,LUCA Drama,1
+399,Kinder- en Poppentheater Propop,103
+400,alexander vzw,2
+401,Nico Sturm en Karolien De Beck,1
+402,De Stokerij,1
+403,School of Arts,1
+404,Orfeo vzw,2
+405,Bl!ndman,8
+406,Compagnie Pierre Droulers,4
+407,Le Mal du Siecle,20
+408,Kopseer,1
+409,De eibakkerij,1
+410,Tinistri vzw,3
+411,Koninklijk Conservatorium Antwerpen,2
+412,Festival de Liège,6
+413,Theater Saignant,3
+414,Centre des Ecritures Contemporaines et Numériques 2 - CECN2,2
+415,C-mine cultuurcentrum Genk,15
+416,klein & Wagner,5
+417,De Krijtkring,2
+418,Nadar ensemble,1
+419,CC Berchem,6
+420,Tg Dwaalzin,1
+421,Fortinbras,2
+422,Koninklijk Muziekconservatorium Brussel,2
+423,Margarita Production,81
+424,Compagnie de Koe,120
+425,De Tijd,123
+426,Red Orange Productions,2
+427,Transquinquennal,34
+428,Muzi a Zeny,2
+429,Tableau nr.1,5
+430,Mathilde Speelt,2
+431,Anno'02,3
+432,Vanity vzw,9
+433,De Munt/La Monnaie,361
+434,SPECTRA ensemble,4
+435,Playerwater,2
+436,Theater Tenslotte,1
+437,Plinn vzw,1
+438,Îles Flottantes vzw,1
+439,Cie M.E.S.S.,2
+440,Teater Exces vzw,14
+441,Platform 0090,17
+442,de LaLa's,1
+443,Larf!,49
+444,CC De Ster,2
+445,Poppentheater PICO,1
+446,Kamp Kalf,1
+447,Teater Zonder Toegevoegd Zout,3
+448,BAM - Eugène Bervoets,1
+449,Publiekstoneel,1
+450,Music Hall Group,5
+451,ENSEMBLE SUIKERIJ/TEATERBARRIKADE,1
+452,Tout Petit,5
+453,IOA - International Opera Academy,2
+454,Glüg,1
+455,Theater Scorpio,16
+456,Tg Cactusbloem,3
+457,Tg Marcus,1
+458,Damaged Goods,130
+459,Palmers & Pierlet vzw,2
+460,Théâtre National de la Communauté française,20
+461,Arbeit.oderentweder,2
+462,Cie Todavia,1
+463,MiramirO - Internationaal Straattheaterfestival Gent,2
+464,Blueback asbl,1
+465,Krokusfestival,13
+466,Spelersgroep Ernst/Serieus,3
+467,Catalpa vzw,4
+468,vzw Sontag,4
+469,Theater De Schaduw,16
+470,Bende Ongeregeld vzw,2
+471,Antwerpen Boekenstad,1
+472,De Zeepcompagnie,16
+473,TREVOR vzw,2
+474,Mireille en Mathieu,19
+475,Luk Wyns,2
+476,Caravan Production,104
+477,aredlineproject,1
+478,Raamtheater,44
+479,Galothar,7
+480,De Nwe Tijd,4
+481,Nora Tilley,2
+482,TIE 3,1
+483,Twee vzw,3
+484,Circus Bulderdrang,1
+485,Fyke,17
+486,Duchamps,28
+487,Foton,3
+488,Filter,17
+489,Tweelicht & Zoon,7
+490,Merlino vzw,2
+491,kc nOna,17
+492,De Kopergietery,1
+493,Vooruit,30
+494,IKOB - Museum für Zeitgenössische Kuns,1
+495,vzw Sopha,2
+496,Het Net,33
+497,Bad van Marie,39
+498,Salva Sanchis,11
+499,New Boys In Town vzw,5
+500,Ratlas Company,1
+501,Mechelse Mimestudio,1
+502,Vlinders & C°,39
+503,BILT,1
+504,Drift vzw,2
+505,Hogeschool Gent - Departement Dramatische Kunst - Opleiding drama-woord,64
+506,Het Grote Gelijk,4
+507,Art Buro Limburg,4
+508,Bon Avontura,1
+509,Volksroom,8
+510,De Bovenkamer,1
+511,THEATER DE POESJE,1
+512,Johny Voners & Janine Bischops,1
+513,Theater Ik & Ik,1
+514,Maten,13
+515,1x2x3 ASBL,1
+516,THEATER BESTEK,1
+517,La petite fabrique,1
+518,Sprookjesweverij,2
+519,L'Hommmm,5
+520,Stromend Water vzw,1
+521,V.E.L.D.,3
+522,Archives et Musée de la Littérature,1
+523,Annabel Schellekens & Thomas Devens,1
+524,Tandem asbl,3
+525,Iota Theaterwerkgroep,25
+526,Tovomol,4
+527,Julia Sugranyes,1
+528,De Factorie,6
+529,Maelstrom,2
+530,Rataplan vzw,34
+531,Hush Hush Hush,18
+532,Struiken vzw,3
+533,Kaaitheater,82
+534,Frank Degruyter,19
+535,Theater Houtekop,14
+536,Marc Vanrunxt / Hyena,24
+537,Chiel Van Berkel,1
+538,Theater O!,1
+539,kristal & vanplastiek,5
+540,Blitz,1
+541,Tg. NUN,1
+542,Theater 3/3,1
+543,Toneelgroep Ceremonia,77
+544,Cie MoSTeRD MeT ZaaD,1
+545,Happy New Ears,4
+546,Palindroom,7
+547,Theater Ivonne Lex,23
+548,Galacticamendum,2
+549,De Ontmoeting vzw,1
+550,Land in zicht vzw,1
+551,Flat Earth Society,2
+552,WALTER JORIS,1
+553,Theater Tieret,47
+554,Poppentejater Jejem Piron,17
+555,Artefact - festival voor mediakunst,1
+556,Krakatau,3
+557,Sax-Appeal,2
+558,vzw Mechelen - Karel V,1
+559,Sharon Zuckerman & Arco Renz,3
+560,De Eilandverkaveling,7
+561,CC Ekeren,1
+562,DE MAAN,45
+563,PANGEA,1
+564,Het Muziek LOD,76
+565,Bains::Connective,18
+566,Salibonani,7
+567,keski.e.space,16
+568,La résistance ridicule,3
+569,Kip met kop,9
+570,Ecstasy vzw,2
+571,Bonbon,1
+572,Cie Ea Eo,10
+573,De nieuwe opdrachtgevers,1
+574,LRV-PRODUCTIES,11
+575,Etablissement d'en Face,1
+576,ampersand,2
+577,Kunstzaken bvba,1
+578,De Verrukking,9
+579,Feniks festival,1
+580,"Riche, Riche & Riche",1
+581,Compagnie DeSnor,6
+582,Cie Karin Vyncke / Aquilon vzw,27
+583,Cultuurcentrum Merksem,1
+584,Circuscentrum - Vlaams Centrum voor Circuskunsten,1
+585,AndWhatBesidesDeath,5
+586,Leefgroep de Panda,3
+587,Het Entrepot,2
+588,Jan Decorte & Cie,3
+589,La Barca Ensemble,3
+590,Lemmensinstituut - Hogeschool voor Wetenschap en Kunst,16
+591,Seventyseven,13
+592,Alden Biesen Zomeropera vzw,14
+593,ID theater,2
+594,Cultuurmarkt van Vlaanderen,1
+595,TAKT/Dommelhof,1
+596,FRANK NUYTS & JACQUES SERVAES,1
+597,DE KOLONIE MT,26
+598,Open Circuit,9
+599,Zwarte Meeuw,5
+600,Mr. & Mrs. Fox,3
+601,Robbert&Frank/Frank&Robbert,5
+602,BRUT,4
+603,GC 't Groenendal,2
+604,Theaterprojecten De goesting,1
+605,De Beweeging,33
+606,de Roovers,89
+607,Theater Onderhetvel,11
+608,Koninklijk Jeugdtheater,56
+609,Koninklijk Conservatorium - afd. Drama,1
+610,Tg Elektra,3
+611,Defdef TheatreCompany,5
+612,Wit.h,3
+613,Compagnie Hatsjie,5
+614,Bozar,5
+615,Duizendeneen,6
+616,STUK Kunstencentrum vzw,41
+617,Lapzus,1
+618,SEEFTHEATER,1
+619,Europalia International,1
+620,Cava,5
+621,La Comedie Crapule,4
+622,Pianofabriek,20
+623,Samenleven Runkst,1
+624,Gallerie Nadja Vilenne,1
+625,Uitgezonderd. Theater!,1
+626,Matrix Art Project,1
+627,de Bühnehasen,1
+628,Europees Festival,15
+629,Florence Augendre,5
+630,Groupov,4
+631,Theater Teater / Het 3° bedrijf,9
+632,Les dames blanches,1
+633,Theater op de Markt,1
+634,Studio KoS,2
+635,Sprookjes enzo vzw,22
+636,Louise Vanneste/Rising Horses,8
+637,Jan Fabre - Troubleyn,160
+638,Studio Tokio,1
+639,Redt & helpt uzelven en elkander,1
+640,Raymond van het Groenewoud,1
+641,ChampdAction,4
+642,De komeet,28
+643,Quatuor Danel,1
+644,De Vikingen,6
+645,4Hoog Productiehuis,103
+646,ZOO,77
+647,Kollektief D & A,51
+648,kabinet k,18
+649,De Sprook,2
+650,Tribe,1
+651,"Zwerm
+",1
+652,Theater Froe Froe,152
+653,Athome,21
+654,Mark Verstraete,3
+655,BodyTalker,2
+656,Is Goudvis vzw,1
+657,Cirq'ulation Locale,5
+658,Bianco Nero,2
+659,Globe Aroma,1
+660,Teatertentog,5
+661,Het Eenzame Westen,3
+662,Hel's Kitchen,6
+663,Irma Firma,10
+664,De Diepe Rivieren vzw,3
+665,lAmpekAp,4
+666,Wolven vzw,2
+667,Nada & Co,1
+668,Oud Huis Stekelbees,1
+669,Theater gordijnen voor konijnen,12
+670,Jef Demedts (vzw),2
+671,Rwina vzw,3
+672,Anatolie Toneel Groep,2
+673,Vlaams Theater Instituut - VTi,1
+674,Beethoven Academie,2
+675,Salomee Speelt,7
+676,"Hogeschool Antwerpen / departement Dramatische Kunst, Muziek en Dans",9
+677,Koninklijke Nederlandse Schouwburg i.o.n.,15
+678,Lilia Mestre,1
+679,Collectif Malunés,6
+680,De Onderneming,66
+681,POK Multimediacollectief,3
+682,Maquis,1
+683,Enclave Dance Company,1
+684,Time Festival,11
+685,0090 Kunstenfestival,1
+686,Vrij van zegel,1
+687,Monty,70
+688,Het Kwartier,2
+689,FONTH bvba,2
+690,Mambocito Mio,4
+691,Stray Light vzw,1
+692,Stabada,6
+693,Continuum,15
+694,Antwerpen Averechts,1
+695,Kunstlab AVElinks,1
+696,daarKom vlaams-marokkaans culturenhuis,1
+697,Round Face vzw,9
+698,les ballets C de la B,129
+699,Musical van Vlaanderen,14
+700,KC TheaterTeater,1
+701,Charleroi/Danses,11
+702,HERMESensemble,4
+703,De Muziekfactorij,1
+704,La Cité Moderne,1
+705,TG Ting,5
+706,Opera Vlaanderen,21
+707,Jong Bloed,6
+708,Rosas,217
+709,La Compagnie Victor,2
+710,de Claes fabriek,2
+711,'t ANtWOORD,1
+712,Wrong Ass. / In the Wrong,1
+713,Kollektief Najief,2
+714,CC De Grote Post,3
+715,MEMIS,3
+716,Dans in Kortrijk,7
+717,Jean Luc Ducourt,9
+718,Boris vzw,5
+719,Kasteel van Gaasbeek,1
+720,het KIP,55
+721,Latitudes Lille Bruxelles,3
+722,Verenigde werkhuizen Thassos v.z.w.,4
+723,Martico vzw,4
+724,Dunia,6
+725,OHNO Cooperation,4
+726,Tiens Tiens,1
+727,Louisa's Daughter,2
+728,Kosmonaut Production,9
+729,Disco Waterschei,1
+730,Pilot Productions,1
+731,Compagnie Aimé de Lignière,4
+732,Zanzi vzw,2
+733,Capilla Flamenca,2
+734,ccBe,4
+735,Arca,92
+736,Zoe,4
+737,Mechels Miniatuur Teater,90
+738,Nunc et / est nunc,1
+739,Goedertier,5
+740,Ponyhill,6
+741,Ibycus,4
+742,Handelsbeurs,1
+743,Not Standing vzw,3
+744,Sermoen Theatermakers,8
+745,Time Circus vzw - Guerillartcollectief,1
+746,Theatercollectief Raf,1
+747,Stof,2
+748,Compagnie Monica,2
+749,les yeux bleus,1
+750,Compagnie Thor,14
+751,Kowboy Kaos,3
+752,Manyone,6
+753,W.A.C.K.O,5
+754,Blauwe Maandag Compagnie,22
+755,Cie Mala Hierba,1
+756,Art Basics for Children,1
+757,Compagnie Michèle Noiret,4
+758,Company Las Barbudas,2
+759,Netwerk / centrum voor hedendaagse kunst,23
+760,Ultima Vez,98
+761,Hof van Eede,13
+762,WIThWIT,2
+763,Compagnie Le Corridor,10
+764,Nieuwe Realisaties,4
+765,Lucinda Ra,5
+766,Vlaams-Nederlands huis deBuren,3
+767,Sjanteboetiek Produkties,22
+768,LaDea,11
+769,timecircus vzw,1
+770,RITCS,2
+771,Teater Rabarber,2
+772,Vaart,1
+773,Dirc Kauba Dance Company,1
+774,vzw Wilde Vlechten,2
+775,Sarma,1
+776,Danscentrum Jette,5
+777,Bonk vzw,2
+778,Ontroerend Goed,84
+779,Buda Kunstencentrum,25
+780,Michèle Anne De Mey,3
+781,Max Last,4
+782,Internationaal Theaterschool Festival Brussel vzw,2
+783,Mich Walschaerts,1
+784,WERKHUIS/producties,13
+785,Volksopera,2
+786,De Bende van de Prins,5
+787,tg STAN,213
+788,De Nietjesfabriek,7
+789,Hiatus,5
+790,Mars,30
+791,Nevski Prospekt,12
+792,De ZeeFabriek,1
+793,Europees Centrum Opera en Vocale Kunst,2
+794,vzw Pamele,1
+795,De Maand Mei,3
+796,Alibi collectief,36
+797,compagnie lodewijk/louis,17
+798,An de Donder & Paul Verrept,1
+799,MOPA,1
+800,Stuc,10
+801,Müdts,1
+802,Bronstig Veulen,16
+803,Brussel 2000,3
+804,Eastman,37
+805,Cie Sweatshop,2
+806,Compagnie Nadine Ganase,1
+807,Dadanero,2
+808,Les Brigittines,1
+809,Centre Chorégraphique de la Communauté française en Belgique,3
+810,Compagnie Trois Pipes,1
+811,Unie Der Zorgelozen,32
+812,Devriendt vzw,10
+813,OPENDOEK vzw,2
+814,COMPANY FEED,1
+815,Cultuurcentrum Hasselt,5
+816,Madam Fortuna,6
+817,Theater Zuidpool,132
+818,Brandung,1
+819,Schouwburg Kortrijk,1
+820,Godarville asbl,1
+821,Compagnie Trimaran,1
+822,Air de C,3
+823,WorkSpaceBrussels - Brusselse Werkplaats voor Podiumkunsten,11
+824,Judas Theaterproducties,19
+825,Nono C.,4
+826,TEATERBARRIKADE ,2
+827,theaterMalpertuis,144
+828,Tg DeGroep,1
+829,Abattoir Fermé,96
+830,Compagnie Hopla,3
+831,NTGent,235
+832,Living Lines,1
+833,Kunstencentrum Tor,8
+834,Braakland/ZheBilding,109
+835,APB De Warande,12
+836,Stilllab,50
+837,Compagnie Cecilia,50
+838,Murmure vzw,2
+839,de ELsmakerij,2
+840,Hertenkamp,3
+841,Roberta Dance Compagnie,1
+842,Alexander Sreyeac Compagnie,6
+843,Pain Arts,2
+844,Lampe,14
+845,CREW_eric joris,60
+846,Opera Mobile,8
+847,deSingel,17
+848,Sight Of An Ignored Landscape,1
+849,vzw Root,2
+850,De Vereniging van Enthousiasten voor het Reële & Universele VZW,8
+851,Kuiperskaai,6
+852,Theater Bas,12
+853,CC Antoon Spinoy,1
+854,Aifoon vzw,3
+855,De Verenigde Cultuurfabrieken vzw,1
+856,Bob vzw,1
+857,Arthur,1
+858,ProMITHEus,2
+859,Bloet,25
+860,Zeven vzw,14
+861,Le manège.mons,4
+862,UA - Theaterwetenschappen,3
+863,'t Arsenaal,97
+864,De Erfgenamen van Pia Fraus,1
+865,Rubber Duck,3
+866,One-off vzw,4
+867,Cour & Jardin,4
+868,Club Moral,3
+869,Les Tanneurs,10
+870,Mir/Oeral vzw,1
+871,Passerelle - platform voor jonge dans,23
+872,Artesis - Koninklijk Conservatorium Campus Lier,2
+873,Petaar vzw,2
+874,SuperBodies,1
+875,Mirakel,4
+876,Nat Gras,16
+877,School of Arts - KASK DRAMA,4
+878,Theaterwerkplaats NEST,3
+879,Limelight,25
+880,Ensemble Leporello,187
+881,Bij' De Vieze Gasten,47
+882,Strange Fruit vzw,1
+883,Blauw,2
+884,CC De Werft,3
+885,John Torso Swim Cie,6
+886,Luna Baal,1
+887,Dame de Pic ASBL / Cie Karine Ponties,18
+888,Rubio Strijkkwartet,1
+889,Artforum vzw,12
+890,Quetzal asbl,1
+891,De Werf,118
+892,Lieflamd,2
+893,Compagnie Furiosas,2
+894,De Stichting / Peter De Graef,13
+895,Sonda,1
+896,Les Ballets du Grand Maghreb,7
+897,DROP PROD,4
+898,Vlinderboom en Stinkzwam Experimenten,12
+899,Tmg LAP,7
+900,Erasmushogeschool Brussel / Koninklijk Conservatorium,24
+901,Musidora,1
+902,Le Label Cedana,3
+903,Theater Woelwater,13
+904,Sandman,8
+905,Het Schooljeugdtheater,34
+906,Charlie Degotte,1
+907,Phluïde Cie.,1
+908,Aventura Musica,2
+909,Corpus ca.,12
+910,FosFor Collectief,1
+911,Jeux Interdits Anc. Etabl.,3
+912,P.A.R.T.S.,99
+913,Anno '8,2
+914,CAM TEATER- EN AUDIO-VIDEOPRODUKTIES,1
+915,vzw Saignant,2
+916,Studio Eclipse,13
+917,The Ministry of Operatic Affairs,3
+918,Stichting Kunst in het College vzw,5
+919,Theatermakersgroep Exprezzive,3
+920,Dinska Bronska,9
+921,Artboem,3
+922,Verenigde Planeten / United Planets,7
+923,30CC,11
+924,Theater De Spiegel,97
+925,Doble Mandoble,1
+926,Paul Coppens,2
+927,Ferdnnd,1
+928,unm,14
+929,Ancienne Belgique (AB),1
+930,Cultuurcentrum Kortrijk,2
+931,Niels asbl,6
+932,Rendez-Vous!?,1
+933,Bad Ass Cie,1
+934,ECCE,1
+935,Théâtre de la Balsamine,2
+936,Scopello vzw,1
+937,kleinVerhaal,3
+938,Dans in Limburg,4
+939,Asbest Theater-Producties,3
+940,Fakkelteater,9
+941,Geert Genbrugge,1
+942,Yawar,5
+943,Theatergroep Authentiek Antwerpen,2
+944,Needcompany,154
+945,Jamaa El Irakya,5
+946,"t,arsenaal",37
+947,Union Suspecte,52
+948,Tonic,4
+949,Ensemble KNS - Raamteater,12
+950,Les Argonautes,4
+951,Firefly,5
+952,Veerle Bakelants,7
+953,Klappers van Vrouwen - FMDO,1
+954,De Kempvader,1
+955,Rosette De Herdt,2
+956,We Love Productions,7
+957,Paco-Producties,2
+958,BIS Produkties,2
+959,Fiëbre,2
+960,luxemburg,96
+961,Hogeschool Antwerpen / Hoger Instituut voor Dans (HID),28
+962,Paljas Produkties,84
+963,Ottorongo vzw,3
+964,Theater Scharlaken dak,11
+965,Endewolf,2
+966,Compagnie KAiET!,17
+967,Musica vzw,9
+968,P.A.R.T.S.FOUNDATION,2
+969,Visit vzw,3
+970,Het Firmament,5
+971,Het ij,1
+972,In vitro,6
+973,Bert & Fred,2
+974,Het Feestpaleis vzw,5
+975,Volle Petrol,1
+976,De Fluistercompagnie,1
+977,Start vzw,1
+978,Zulu Nation,1
+979,Kloppend Hert,9
+980,Detlev,1
+981,Halles de Schaerbeek,2
+982,detheatermaker,32
+983,Terloopse Zalmen,1
+984,Cie Isabella Soupart,5
+985,deepblue,41
+986,CC Muze Heusden-Zolder,1
+987,CC Genk,6
+988,Polydans Compagnie,8
+989,Kreutzfeld Verein,1
+990,Zefiro Torna,2
+991,Kluster vzw,2
+992,Balsem vzw,2
+993,Katrinahof,1
+994,GEN2020,12
+995,KC Moonbeat,1
+996,Bricolé Paté,1
+997,De Zwarte Komedie,42
+998,ARSENAAL/LAZARUS,2
+999,Cimatics asbl,3
+1000,HETGEVOLG,124
+1001,LOD,103
+1002,RUDA asbl,2
+1003,Theaterwerkgroep Kopspel,1
+1004,Phare Est,1
+1005,ARType vzw,3
+1006,Steigeisen,10
+1007,Het nieuwstedelijk,19
+1008,Kunsten en Erfgoed,1
+1009,Exiles,4
+1010,Het Ongerijmde,2
+1011,Théâtre Des 2 Eaux,3
+1012,"Wigbert, Filip Jordens & Bart Plouvier",1
+1013,Eland Nieuwe Stijl,2
+1014,Jan Martens/GRIP,1
+1015,Anima Vinctum/Muziekkunst voor Dans & Theater,2
+1016,Voetvolk,24
+1017,Poppenspel Kiekeboe,9
+1018,Tibaldus en andere hoeren,18
+1019,Veva De Blauwe & Sara Vertongen,5
+1020,Koninklijk Ballet van Vlaanderen,135
+1021,TIL 2.3,8
+1022,Bureau des Arts,2
+1023,vzw Punt_O,1
+1024,D°eFFeKt,4
+1025,Het Banket,12
+1026,Theater aan Zee (TarTarT),11
+1027,Toneelatelier,1
+1028,Momentum festival,2
+1029,De Spelerij,14
+1030,Retina Dance Company,13
+1031,Mons 2015 Capitale européenne de la Culture,3
+1032,Santé publiek,3
+1033,Theater Tol,27
+1034,Kunst/Werk,118
+1035,GC De Vaartkapoen,1
+1036,Podium Modern,6
+1037,De Kleine Academie,2
+1038,Theatercollectief Bleeding Bulls,6
+1039,Behoud de Begeerte - Kunstencentrum voor literatuur,7
+1040,FURIOSO VZW,1
+1041,Corban,11
+1042,CC Maasmechelen,8
+1043,Visual Kitchen,1
+1044,Mennomichieljozef vzw,7
+1045,Karel Vingerhoets,8
+1046,Stedelijke Muziekacademie Lier,1
+1047,O'Kontreir,1
+1048,De Bromvlieg,2
+1049,Ronald Van Rillaer,4
+1050,Paul Kenens Solo Circater,1
+1051,Lujd,2
+1052,Grensgeval,1
+1053,PRiSMA,3
+1054,De Wentelteefjes,1
+1055,Kolka Kollektief,6
+1056,Theatermakersgroep De Queeste,41
+1057,Laagland,8
+1058,Theater Spelende Mens,5
+1059,Rode Boom,14
+1060,Herring,1
+1061,CAW Artevelde,1
+1062,Post uit Hessdalen,3
+1063,B12 vzw,6
+1064,Het Bordes,16
+1065,De Rivieren vzw,1
+1066,Tutti Fratelli,17
+1067,Ballet Vlaanderen,14
+1068,Theater Speelman,6
+1069,C&H,6
+1070,BAFF,15
+1071,NouS,1
+1072,Podiumkunsten Bis Produkties,2
+1073,kwaad bloed,46
+1074,Nieuw Ensemble RaamTeater,71
+1075,De Bijloke Muziekcentrum,6
+1076,Edward vzw,14
+1077,Dito'Dito,91
+1078,Cacao Bleu,14
+1079,TRANSLAB,1
+1080,CC De Adelberg,1
+1081,Ennesima,10
+1082,Vlaamse Opera,179
+1083,Jeugd en Muziek Orkest Antwerpen,1
+1084,NONA,22
+1085,Werkgroep voor Vormingstheater,16
+1086,Kinderenvandevilla,7
+1087,Let's Go Urban,2
+1088,Cie 13 / Rosa Mei,1
+1089,Violetta,1
+1090,2fabrieken,10
+1091,Stedelijk Instituut voor Sierkunsten en Ambachten - SISA,1
+1092,Beursschouwburg,14
+1093,Service To Others,3
+1094,MaisonDahlBonnema,13
+1095,De Vereeniging,2
+1096,Klapstukfestival,28
+1097,'t Spil - kollektief,6
+1098,MARCANT PRODUCTIES,1
+1099,dixit vzw,10
+1100,Het Betoog,11
+1101,De Zweep,5
+1102,Villa Lobos vzw,12
+1103,WALPURGIS,94
+1104,Kunstenfestivaldesarts,66
+1105,Kotterie Flamand,4
+1106,UA (Universiteit Antwerpen),1
+1107,BLOK-BLOC,2
+1108,Maan en Zand,1
+1109,De Parade,57
+1110,Tirasila,18
+1111,Het Laatste kwartier,2
+1112,SPIN,19
+1113,Hécate,2
+1114,Limburgs Projekt Teater,3
+1115,Klankfabriek vzw,1
+1116,Nieuwpoorttheater,36
+1117,Tuning people,34
+1118,Kobalt Works,57
+1119,Forsiti'A,1
+1120,Robin vzw,1
+1121,Marie Slik,1
+1122,Lemm&Barkey,5
+1123,La Oca Loca,12
+1124,Eendhoorn,1
+1125,Utopia,3
+1126,Jeugd en Muziek Gent,1
+1127,Laat in de noen,3
+1128,STAU Collectief,1
+1129,Andere Podia,2
+1130,Okapuka,1
+1131,Teater Leen Persijn,20
+1132,m² (De Tijd),7
+1133,Droomedaris-Rex,15
+1134,Echt Antwaarps Teater,71
+1135,Drie Vingers,7
+1136,Gents Amusementstheater,7
+1137,'t Gebroed,5
+1138,Chez Jean-Jacques,2
