@@ -78,9 +78,8 @@ for i, productionid in enumerate(producties):
     if i % 1000 == 0:
         print(i, "of", len(producties))
     sql = """
-    SELECT
-      people.full_name,
-      count(production.productions.id)
+    SELECT DISTINCT
+      people.full_name
     FROM
       production.productions,
       production.relationships,
@@ -88,12 +87,10 @@ for i, productionid in enumerate(producties):
     WHERE
       relationships.production_id = productions.id AND
       people.id = relationships.person_id AND
-      productions.id = {0}
-    GROUP BY
-      production.people.full_name;
+      productions.id = {0};
     """.format(productionid[0])
     knst_cur.execute(sql)
     for row in knst_cur.fetchall():
-        personen.add(row)
+        personen.add(row[0])
 
-DataFrame(list(personen), columns=["Lijst van personen", "Aantal producties"]).to_csv("lijst_van_personen.csv")
+DataFrame(list(personen), columns=["Lijst van personen"]).to_csv("lijst_van_personen.csv")
