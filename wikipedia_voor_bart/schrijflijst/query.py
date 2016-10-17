@@ -45,7 +45,7 @@ knst_cur.execute(sql)
 for row in knst_cur.fetchall():
     lijst_van_organisaties.append(list(row))
 
-DataFrame(lijst_van_organisaties, columns=["Lijst van organisaties", "Count van producties"]).to_csv("lijst_van_organisaties.csv")
+DataFrame(lijst_van_organisaties, columns=["Lijst van organisaties", "Count van producties"]).to_csv("schrijflijst/lijst_van_organisaties.csv")
 
 # lijst van alle personen die aan deze producties (1) verbonden zijn
 
@@ -71,7 +71,7 @@ WHERE
 """
 
 personen = set()
-
+personen_done = set()
 knst_cur.execute(sql)
 producties = knst_cur.fetchall()
 for i, productionid in enumerate(producties):
@@ -79,7 +79,7 @@ for i, productionid in enumerate(producties):
         print(i, "of", len(producties))
     sql = """
     SELECT DISTINCT
-      people.full_name
+      people.id, people.full_name
     FROM
       production.productions,
       production.relationships,
@@ -87,10 +87,18 @@ for i, productionid in enumerate(producties):
     WHERE
       relationships.production_id = productions.id AND
       people.id = relationships.person_id AND
-      productions.id = {0};
+      productions.id = {0}
     """.format(productionid[0])
     knst_cur.execute(sql)
-    for row in knst_cur.fetchall():
-        personen.add(row[0])
+    people_in_production = knst_cur.fetchall()
+    for uid, name in people_in_production:
+            sql = """
+            SELECT DISTINCT COUNT(relationships.production_id)
+            FROM production.relationships
+            WHERE relationships.person_id = {0}
+            """.format(uid)
+            knst_cur.execute(sql)
+            c = knst_cur.fetchone()[0]
+            personen.add((name, c))
 
-DataFrame(list(personen), columns=["Lijst van personen"]).to_csv("lijst_van_personen.csv")
+DataFrame(list(personen), columns=["Lijst van personen", "Count van producties"]).to_csv("schrijflijst/lijst_van_personen.csv")
