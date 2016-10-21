@@ -79,11 +79,79 @@ class datakunstenbetriples():
         dt = self.cur.fetchone()
         return DataFrame([[productie_id, "premièredatum", datetime(dt[0], dt[1], dt[2])]], columns=["productie_id", "relatietype", "datum"])
 
+    def get_gelinkte_theaterteksten(self, productie_id):
+        sql = """
+        SELECT
+          relationships.production_id,
+          book_titles.class_name,
+          book_titles.title_nl,
+          book_titles.id
+        FROM
+          production.book_titles,
+          production.relationships
+        WHERE
+          relationships.book_title_id = book_titles.id AND
+          book_titles.class_name = 'TheaterText' AND
+          relationships.production_id = {0};
+        """.format(productie_id)
+        self.cur.execute(sql)
+        return DataFrame(self.cur.fetchall(), columns=["productie_id", "document_type", "document_titel", "document_id"])
+
+    def get_speelperiode(self, productie_id):
+        # is dit een herneming?
+        sql = """
+        SELECT productions.rerun_of_id, seasons.start_year, seasons.end_year
+        FROM production.productions, production.seasons
+        WHERE productions.id = {0} AND productions.season_id = seasons.id
+        """.format(productie_id)
+        self.cur.execute(sql)
+        herneming_van, startjaar, eindjaar = self.cur.fetchone()
+
+        # dan zoek naar herneming van de moederproductie
+        if herneming_van is not None:
+            productie_id = herneming_van
+
+            # de jaren oproepen van de moederproductie
+            sql = """
+            SELECT seasons.start_year, seasons.end_year
+            FROM production.productions, production.seasons
+            WHERE productions.id = {0} AND productions.season_id = seasons.id
+            """.format(productie_id)
+            self.cur.execute(sql)
+            startjaar, eindjaar = self.cur.fetchone()
+
+        # hernemingen van rootproductie
+        sql = """
+        SELECT
+          seasons.start_year,
+          seasons.end_year
+        FROM
+          production.productions,
+          production.seasons
+        WHERE
+          productions.season_id = seasons.id AND
+          productions.rerun_of_id = {0};
+        """.format(productie_id)
+        self.cur.execute(sql)
+        jaren = set([startjaar, eindjaar])
+        for item in self.cur.fetchall():
+            jaren.add(item[0])
+            jaren.add(item[1])
+
+        lines = []
+        for jaar in jaren:
+            lines.append([productie_id, "speeljaar", jaar])
+        return DataFrame(lines, columns=["productie_id", "relatie", "speeljaar"])
+
 triples = datakunstenbetriples()
-pfo = triples.get_functie_en_organisatie(460936)
-pfp = triples.get_functie_en_persoon(460936)
-ppremieredatum = triples.get_premieredatum(460936)
+pfo = triples.get_functie_en_organisatie(448736)
+pfp = triples.get_functie_en_persoon(448736)
+ppremieredatum = triples.get_premieredatum(448736)
+theaterteksten = triples.get_gelinkte_theaterteksten(448736)
+speelperiode = triples.get_speelperiode(448738)
 
 pfp.to_csv("gelinkte personen.csv")
 pfo.to_csv("gelinkte organisaties.csv")
 ppremieredatum.to_csv("premieredatum.csv")
+theaterteksten.to_csv("theaterteksten.csv")
+speelperiode.to_csv("speelperiode.csv")
