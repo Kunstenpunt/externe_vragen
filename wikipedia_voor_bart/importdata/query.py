@@ -1,6 +1,6 @@
 import psycopg2
 from configparser import ConfigParser
-from pandas import DataFrame
+from pandas import DataFrame, concat
 from datetime import datetime
 
 class datakunstenbetriples():
@@ -33,7 +33,8 @@ class datakunstenbetriples():
             relationships.production_id = {0};
         """.format(productie_id)
         self.cur.execute(sql)
-        return DataFrame(self.cur.fetchall(), columns=["productie_id", "functie_id", "functie", "organisatie_id", "organisatie"])
+        os = self.cur.fetchall()
+        return DataFrame([[o[0], o[2] + "_" + str(o[1]), o[4] + "_" + str(o[3])] for o in os], columns=["productie_id", "relatie", "value"])
 
     def get_functie_en_persoon(self, productie_id):
         sql = """
@@ -55,20 +56,25 @@ class datakunstenbetriples():
                     relationships.production_id = {0};
                 """.format(productie_id)
         self.cur.execute(sql)
-        return DataFrame(self.cur.fetchall(), columns=["productie_id", "functie_id", "functie", "persoon_id", "persoon"])
+        os = self.cur.fetchall()
+        return DataFrame([[o[0], o[2] + "_" + str(o[1]), o[4] + "_" + str(o[3])] for o in os], columns=["productie_id", "relatie", "value"])
 
-    def get_premieredatum(self, productie_id):
+    def get_premieredatum_en_locatie(self, productie_id):
         sql = """
         SELECT
             date_isaars.year,
             date_isaars.month,
-            date_isaars.day
+            date_isaars.day,
+            venues.name,
+            venues.city
         FROM
           production.productions,
           production.shows,
           production.show_types,
-          production.date_isaars
+          production.date_isaars,
+          production.venues
         WHERE
+          shows.venue_id = venues.id AND
           shows.date_id = date_isaars.id AND
           shows.show_type_id = show_types.id AND
           show_types.name_nl = 'première' AND
@@ -77,7 +83,7 @@ class datakunstenbetriples():
         """.format(productie_id)
         self.cur.execute(sql)
         dt = self.cur.fetchone()
-        return DataFrame([[productie_id, "premièredatum", datetime(dt[0], dt[1], dt[2])]], columns=["productie_id", "relatietype", "datum"])
+        return DataFrame([[productie_id, "premiere", datetime(dt[0], dt[1], dt[2]).isoformat() + " (" + dt[3] + ", " + dt[4] + ")"]], columns=["productie_id", "relatie", "value"])
 
     def get_gelinkte_theaterteksten(self, productie_id):
         sql = """
@@ -95,7 +101,22 @@ class datakunstenbetriples():
           relationships.production_id = {0};
         """.format(productie_id)
         self.cur.execute(sql)
-        return DataFrame(self.cur.fetchall(), columns=["productie_id", "document_type", "document_titel", "document_id"])
+        tts = self.cur.fetchall()
+        return DataFrame([[str(tt[0]), tt[1], tt[2] + "_" + str(tt[3])] for tt in tts], columns=["productie_id", "relatie", "value"])
+
+    @staticmethod
+    def _jarenlijst_naar_periode(jarenlijst):
+        jaren = sorted(jarenlijst)
+        periodes = []
+        periode = {"start": jaren[0], "einde": jaren[0]}
+        for jaar in jaren[1:]:
+            if (jaar - periode["einde"] - 1) == 0:
+                periode["einde"] = jaar
+            else:
+                periodes.append(periode)
+                periode = {"start": jaar, "einde": jaar}
+        periodes.append(periode)
+        return periodes
 
     def get_speelperiode(self, productie_id):
         # is dit een herneming?
@@ -137,21 +158,21 @@ class datakunstenbetriples():
         for item in self.cur.fetchall():
             jaren.add(item[0])
             jaren.add(item[1])
-
+        periodes = self._jarenlijst_naar_periode(jaren)
         lines = []
-        for jaar in jaren:
-            lines.append([productie_id, "speeljaar", jaar])
-        return DataFrame(lines, columns=["productie_id", "relatie", "speeljaar"])
+        for periode in periodes:
+            lines.append([productie_id, "speelperiode", str(periode["start"]) + "-" + str(periode["einde"])])
+        return DataFrame(lines, columns=["productie_id", "relatie", "value"])
+
+    def get_productiegegevens(self, productie_id):
+        pfo = triples.get_functie_en_organisatie(productie_id)
+        pfp = triples.get_functie_en_persoon(productie_id)
+        ppremieredatumlocatie = triples.get_premieredatum_en_locatie(productie_id)
+        theaterteksten = triples.get_gelinkte_theaterteksten(productie_id)
+        speelperiode = triples.get_speelperiode(productie_id)
+        return concat([pfo, pfp, ppremieredatumlocatie, theaterteksten, speelperiode])
 
 triples = datakunstenbetriples()
-pfo = triples.get_functie_en_organisatie(448736)
-pfp = triples.get_functie_en_persoon(448736)
-ppremieredatum = triples.get_premieredatum(448736)
-theaterteksten = triples.get_gelinkte_theaterteksten(448736)
-speelperiode = triples.get_speelperiode(448738)
+productiegegevens = triples.get_productiegegevens(448736)
+productiegegevens.to_csv("productiegegevens.csv")
 
-pfp.to_csv("gelinkte personen.csv")
-pfo.to_csv("gelinkte organisaties.csv")
-ppremieredatum.to_csv("premieredatum.csv")
-theaterteksten.to_csv("theaterteksten.csv")
-speelperiode.to_csv("speelperiode.csv")
