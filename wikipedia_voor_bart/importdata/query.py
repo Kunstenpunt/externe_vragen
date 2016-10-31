@@ -13,7 +13,7 @@ class datakunstenbetriples():
         knst.set_client_encoding('UTF-8')
         self.cur = knst.cursor()
 
-    def get_titel(self, productie_id):
+    def get_productie_titel(self, productie_id):
         sql = """
         SELECT
             productions.title
@@ -25,7 +25,7 @@ class datakunstenbetriples():
         os = self.cur.fetchall()
         return DataFrame([[productie_id, "titel", o[0]] for o in os], columns=["productie_id", "relatie", "value"])
 
-    def get_functie_en_organisatie(self, productie_id):
+    def get_productie_functie_en_organisatie(self, productie_id):
         sql = """
         SELECT
             relationships.production_id,
@@ -48,7 +48,7 @@ class datakunstenbetriples():
         os = self.cur.fetchall()
         return DataFrame([[o[0], o[2] + "_" + str(o[1]), o[4] + "_" + str(o[3])] for o in os], columns=["productie_id", "relatie", "value"])
 
-    def get_functie_en_persoon(self, productie_id):
+    def get_productie_functie_en_persoon(self, productie_id):
         sql = """
                 SELECT
                     relationships.production_id,
@@ -71,7 +71,7 @@ class datakunstenbetriples():
         os = self.cur.fetchall()
         return DataFrame([[o[0], o[2] + "_" + str(o[1]), o[4] + "_" + str(o[3])] for o in os], columns=["productie_id", "relatie", "value"])
 
-    def get_premieredatum_en_locatie(self, productie_id):
+    def get_productie_premieredatum_en_locatie(self, productie_id):
         sql = """
         SELECT
             date_isaars.year,
@@ -97,7 +97,7 @@ class datakunstenbetriples():
         dt = self.cur.fetchone()
         return DataFrame([[productie_id, "premiere", datetime(dt[0], dt[1], dt[2]).isoformat() + " (" + dt[3] + ", " + dt[4] + ")"]], columns=["productie_id", "relatie", "value"])
 
-    def get_gelinkte_theaterteksten(self, productie_id):
+    def get_productie_theaterteksten(self, productie_id):
         sql = """
         SELECT
           relationships.production_id,
@@ -130,7 +130,7 @@ class datakunstenbetriples():
         periodes.append(periode)
         return periodes
 
-    def get_speelperiode(self, productie_id):
+    def get_productie_speelperiode(self, productie_id):
         # is dit een herneming?
         sql = """
         SELECT productions.rerun_of_id, seasons.start_year, seasons.end_year
@@ -177,13 +177,129 @@ class datakunstenbetriples():
         return DataFrame(lines, columns=["productie_id", "relatie", "value"])
 
     def get_productiegegevens(self, productie_id):
-        tit = triples.get_titel(productie_id)
-        pfo = triples.get_functie_en_organisatie(productie_id)
-        pfp = triples.get_functie_en_persoon(productie_id)
-        ppremieredatumlocatie = triples.get_premieredatum_en_locatie(productie_id)
-        theaterteksten = triples.get_gelinkte_theaterteksten(productie_id)
-        speelperiode = triples.get_speelperiode(productie_id)
+        tit = triples.get_productie_titel(productie_id)
+        pfo = triples.get_productie_functie_en_organisatie(productie_id)
+        pfp = triples.get_productie_functie_en_persoon(productie_id)
+        ppremieredatumlocatie = triples.get_productie_premieredatum_en_locatie(productie_id)
+        theaterteksten = triples.get_productie_theaterteksten(productie_id)
+        speelperiode = triples.get_productie_speelperiode(productie_id)
         return concat([tit, pfo, pfp, ppremieredatumlocatie, theaterteksten, speelperiode])
+
+    def get_persoongegevens(self, persoon_id):
+        naam = triples.get_persoon_naam(persoon_id)
+        geboortedatum = triples.get_persoon_geboortedatum(persoon_id)
+        locatie = triples.get_persoon_locatie(persoon_id)
+        land = triples.get_persoon_land(persoon_id)
+        website = triples.get_persoon_website(persoon_id)
+        archiefwebsite = triples.get_persoon_archiefwebsite(persoon_id)
+        subsidies = triples.get_persoon_subsidies(persoon_id)
+        theaterteksten = triples.get_persoon_theaterteksten(persoon_id)
+        return concat(naam, geboortedatum, locatie, land, website, archiefwebsite, subsidies, theaterteksten)
+
+    def get_persoon_naam(self, persoon_id):
+        pass
+
+    def get_persoon_geboortedatum(self, persoon_id):
+        pass
+
+    def get_persoon_locatie(self, persoon_id):
+        pass
+
+    def get_persoon_land(self, persoon_id):
+        pass
+
+    def get_persoon_website(self, persoon_id):
+        pass
+
+    def get_persoon_archiefwebsite(self, persoon_id):
+        pass
+
+    def get_persoon_subsidies(self, persoon_id):
+        pass
+
+    def get_persoon_theaterteksten(self, persoon_id):
+        pass
+
+    def get_organisatiegegevens(self, organisatie_id):
+        naam = triples.get_organisatie_naam(organisatie_id)
+        oprichtingsdatum = triples.get_organisatie_oprichtingsdatum(organisatie_id)
+        einddatum = triples.get_organisatie_einddatum(organisatie_id)
+        start_activiteiten = triples.get_organisatie_activiteitenstart(organisatie_id)
+        einde_activiteiten = triples.get_organisatie_activiteiteneinde(organisatie_id)
+        locatie = triples.get_organisatie_locatie(organisatie_id)
+        organisatierelaties = triples.get_organisatie_relaties(organisatie_id)
+        website = triples.get_organisatie_website(organisatie_id)
+        archiefwebsite = triples.get_organisatie_archiefwebsite(organisatie_id)
+        subsidies = triples.get_organisatie_subsidies(organisatie_id)
+        theaterteksten = triples.get_organisatie_theaterteksten(organisatie_id)
+        return concat([naam, oprichtingsdatum, einddatum, start_activiteiten, einde_activiteiten, locatie, organisatierelaties, website, archiefwebsite, subsidies, theaterteksten])
+
+    def get_organisatie_naam(self, organisatie_id):
+        pass
+
+    def get_organisatie_oprichtingsdatum(self, organisatie_id):
+        pass
+
+    def get_organisatie_einddatum(self, organisatie_id):
+        pass
+
+    def get_organisatie_activiteitenstart(self, organisatie_id):
+        pass
+
+    def get_organisatie_activiteiteneinde(self, organisatie_id):
+        pass
+
+    def get_organisatie_locatie(self, organisatie_id):
+        pass
+
+    def get_organisatie_relaties(self, organisatie_id):
+        pass
+
+    def get_organisatie_website(self, organisatie_id):
+        pass
+
+    def get_organisatie_archiefwebsite(self, organisatie_id):
+        pass
+
+    def get_organisatie_subsidies(self, organisatie_id):
+        pass
+
+    def get_organisatie_theaterteksten(self, organisatie_id):
+        pass
+
+    def get_theatertekstgegevens(self, theatertekst_id):
+        titel = triples.get_theatertekst_titel(theatertekst_id)
+        auteurs = triples.get_theatertekst_auteurs(theatertekst_id)
+        vertalers = triples.get_theatertekst_vertalers(theatertekst_id)
+        uitgevers = triples.get_theatertekst_uitgevers(theatertekst_id)
+        isbn_ean = triples.get_theatertekst_isbn_ean(theatertekst_id)
+        producties = triples.get_theatertekst_producties(theatertekst_id)
+        personen = triples.get_theatertekst_personen(theatertekst_id)
+        organisaties = triples.get_theatertekst_organisaties(theatertekst_id)
+
+    def get_theatertekst_organisaties(self, theatertekst_id):
+        pass
+
+    def get_theatertekst_personen(self, theatertekst_id):
+        pass
+
+    def get_theatertekst_producties(self, theatertekst_id):
+        pass
+
+    def get_theatertekst_isbn_ean(self, theatertekst_id):
+        pass
+
+    def get_theatertekst_uitgevers(self, theatertekst_id):
+        pass
+
+    def get_theatertekst_vertalers(self, theatertekst_id):
+        pass
+
+    def get_theatertekst_auteurs(self, theatertekst_id):
+        pass
+
+    def get_theatertekst_titel(self, theatertekst_id):
+        pass
 
 triples = datakunstenbetriples()
 a = triples.get_productiegegevens(448736)
@@ -194,3 +310,26 @@ e = triples.get_productiegegevens(440557)
 productiegegevens = concat([a, b, c, d, e])
 productiegegevens.to_csv("productiegegevens.csv")
 
+f = triples.get_persoongegevens(1878826)
+g = triples.get_persoongegevens(1909965)
+h = triples.get_persoongegevens(1878235)
+i = triples.get_persoongegevens(1879952)
+j = triples.get_persoongegevens(1884464)
+persoongegevens = concat([f, g, h, i, j])
+persoongegevens.to_csv("persoongegevens.csv")
+
+k = triples.get_organisatiegegevens(370945)
+l = triples.get_organisatiegegevens(363214)
+m = triples.get_organisatiegegevens(363497)
+n = triples.get_organisatiegegevens(379035)
+o = triples.get_organisatiegegevens(374188)
+organisatiegegevens = concat([k, l, m, n, o])
+organisatiegegevens.to_csv("organisatiegegevens.csv")
+
+df = concat([productiegegevens, persoongegevens, organisatiegegevens])
+theaterteksten_ids = set(df[df["relatie"] == "TheaterText"]["value"].values)
+theatertekstgegevens = []
+for tid in theaterteksten_ids:
+    tid = tid.split("_")[-1]
+    theatertekstgegevens.append(triples.get_theatertekstgegevens(tid))
+theatertekstgegevens.to_csv("theatertekstgegevens.csv")
