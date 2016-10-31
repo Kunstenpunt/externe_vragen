@@ -188,37 +188,142 @@ class datakunstenbetriples():
     def get_persoongegevens(self, persoon_id):
         naam = triples.get_persoon_naam(persoon_id)
         geboortedatum = triples.get_persoon_geboortedatum(persoon_id)
+        sterftedatum = triples.get_persoon_sterftedatum(persoon_id)
         locatie = triples.get_persoon_locatie(persoon_id)
         land = triples.get_persoon_land(persoon_id)
         website = triples.get_persoon_website(persoon_id)
-        archiefwebsite = triples.get_persoon_archiefwebsite(persoon_id)
         subsidies = triples.get_persoon_subsidies(persoon_id)
         theaterteksten = triples.get_persoon_theaterteksten(persoon_id)
-        return concat(naam, geboortedatum, locatie, land, website, archiefwebsite, subsidies, theaterteksten)
+        return concat([naam, geboortedatum, sterftedatum, locatie, land, website, subsidies, theaterteksten])
 
     def get_persoon_naam(self, persoon_id):
-        pass
+        sql = """
+        SELECT
+            people.full_name
+        FROM
+            production.people
+        WHERE people.id = {0}
+        """.format(persoon_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[persoon_id, "naam", os[0]]], columns=["persoon_id", "relatie", "value"])
 
     def get_persoon_geboortedatum(self, persoon_id):
-        pass
+        sql = """
+        SELECT
+            date_isaars.year,
+            date_isaars.month,
+            date_isaars.day
+        FROM
+            production.people
+        INNER JOIN
+            production.date_isaars
+        ON
+            people.birthdate_id = date_isaars.id
+        WHERE people.id = {0}
+        """.format(persoon_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[persoon_id, "geboortedatum", datetime(os[0], os[1], os[2]) if os else "NA"]], columns=["persoon_id", "relatie", "value"])
+
+    def get_persoon_sterftedatum(self, persoon_id):
+        sql = """
+        SELECT
+            date_isaars.year,
+            date_isaars.month,
+            date_isaars.day
+        FROM
+            production.people
+        INNER JOIN
+            production.date_isaars
+        ON
+            people.death_date_id = date_isaars.id
+        WHERE people.id = {0}
+        """.format(persoon_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[persoon_id, "sterftedatum", datetime(os[0], os[1], os[2]) if os else "NA"]], columns=["persoon_id", "relatie", "value"])
 
     def get_persoon_locatie(self, persoon_id):
-        pass
+        sql = """
+        SELECT
+            locations.city_nl
+        FROM
+            production.people
+        INNER JOIN
+            production.locations
+        ON
+            people.location_id = locations.id
+        WHERE people.id = {0}
+        """.format(persoon_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[persoon_id, "locatie", os[0]]], columns=["persoon_id", "relatie", "value"])
 
     def get_persoon_land(self, persoon_id):
-        pass
+        sql = """
+        SELECT
+            countries.name_nl
+        FROM
+            production.people
+        INNER JOIN
+            production.countries
+        ON
+            people.country_id = countries.id
+        WHERE people.id = {0}
+        """.format(persoon_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[persoon_id, "land", os[0]]], columns=["persoon_id", "relatie", "value"])
 
     def get_persoon_website(self, persoon_id):
-        pass
-
-    def get_persoon_archiefwebsite(self, persoon_id):
-        pass
+        sql = """
+        SELECT
+            people.url
+        FROM
+            production.people
+        WHERE people.id = {0}
+        """.format(persoon_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[persoon_id, "website", os[0]]], columns=["persoon_id", "relatie", "value"])
 
     def get_persoon_subsidies(self, persoon_id):
-        pass
+        sql = """
+        SELECT
+            subsidy_types.title_nl,
+            grants.period
+        FROM
+            production.grants
+        INNER JOIN
+            production.subsidy_types
+        ON
+            grants.subsidy_type_id = subsidy_types.id
+        WHERE grants.person_id = {0}
+        """.format(persoon_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[persoon_id, "subsidie (jaar)", os[0] + " (" + str(os[1]) + ")" if os else "NA"]], columns=["persoon_id", "relatie", "value"])
 
     def get_persoon_theaterteksten(self, persoon_id):
-        pass
+        sql = """
+        SELECT
+          relationships.person_id,
+          book_titles.class_name,
+          book_titles.title_nl,
+          book_titles.id
+        FROM
+          production.book_titles,
+          production.relationships
+        WHERE
+          relationships.book_title_id = book_titles.id AND
+          book_titles.class_name = 'TheaterText' AND
+          relationships.person_id = {0};
+        """.format(persoon_id)
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return DataFrame([[str(tt[0]), tt[1], tt[2] + "_" + str(tt[3])] for tt in tts],
+                         columns=["persoon_id", "relatie", "value"])
 
     def get_organisatiegegevens(self, organisatie_id):
         naam = triples.get_organisatie_naam(organisatie_id)
@@ -258,9 +363,6 @@ class datakunstenbetriples():
     def get_organisatie_website(self, organisatie_id):
         pass
 
-    def get_organisatie_archiefwebsite(self, organisatie_id):
-        pass
-
     def get_organisatie_subsidies(self, organisatie_id):
         pass
 
@@ -273,18 +375,6 @@ class datakunstenbetriples():
         vertalers = triples.get_theatertekst_vertalers(theatertekst_id)
         uitgevers = triples.get_theatertekst_uitgevers(theatertekst_id)
         isbn_ean = triples.get_theatertekst_isbn_ean(theatertekst_id)
-        producties = triples.get_theatertekst_producties(theatertekst_id)
-        personen = triples.get_theatertekst_personen(theatertekst_id)
-        organisaties = triples.get_theatertekst_organisaties(theatertekst_id)
-
-    def get_theatertekst_organisaties(self, theatertekst_id):
-        pass
-
-    def get_theatertekst_personen(self, theatertekst_id):
-        pass
-
-    def get_theatertekst_producties(self, theatertekst_id):
-        pass
 
     def get_theatertekst_isbn_ean(self, theatertekst_id):
         pass
@@ -318,18 +408,18 @@ j = triples.get_persoongegevens(1884464)
 persoongegevens = concat([f, g, h, i, j])
 persoongegevens.to_csv("persoongegevens.csv", index=False)
 
-k = triples.get_organisatiegegevens(370945)
-l = triples.get_organisatiegegevens(363214)
-m = triples.get_organisatiegegevens(363497)
-n = triples.get_organisatiegegevens(379035)
-o = triples.get_organisatiegegevens(374188)
-organisatiegegevens = concat([k, l, m, n, o])
-organisatiegegevens.to_csv("organisatiegegevens.csv", index=False)
+# k = triples.get_organisatiegegevens(370945)
+# l = triples.get_organisatiegegevens(363214)
+# m = triples.get_organisatiegegevens(363497)
+# n = triples.get_organisatiegegevens(379035)
+# o = triples.get_organisatiegegevens(374188)
+# organisatiegegevens = concat([k, l, m, n, o])
+# organisatiegegevens.to_csv("organisatiegegevens.csv", index=False)
 
-df = concat([productiegegevens, persoongegevens, organisatiegegevens])
-theaterteksten_ids = set(df[df["relatie"] == "TheaterText"]["value"].values)
-theatertekstgegevens = []
-for tid in theaterteksten_ids:
-    tid = tid.split("_")[-1]
-    theatertekstgegevens.append(triples.get_theatertekstgegevens(tid))
-theatertekstgegevens.to_csv("theatertekstgegevens.csv", index=False)
+# df = concat([productiegegevens, persoongegevens])
+# theaterteksten_ids = set(df[df["relatie"] == "TheaterText"]["value"].values)
+# theatertekstgegevens = []
+# for tid in theaterteksten_ids:
+#     tid = tid.split("_")[-1]
+#     theatertekstgegevens.append(triples.get_theatertekstgegevens(tid))
+# concat(theatertekstgegevens).to_csv("theatertekstgegevens.csv", index=False)
