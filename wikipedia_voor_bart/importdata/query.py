@@ -308,7 +308,7 @@ c = triples.get_productiegegevens(438835)
 d = triples.get_productiegegevens(451382)
 e = triples.get_productiegegevens(440557)
 productiegegevens = concat([a, b, c, d, e])
-productiegegevens.to_csv("productiegegevens.csv")
+productiegegevens.to_csv("productiegegevens.csv", index=False)
 
 f = triples.get_persoongegevens(1878826)
 g = triples.get_persoongegevens(1909965)
@@ -316,7 +316,7 @@ h = triples.get_persoongegevens(1878235)
 i = triples.get_persoongegevens(1879952)
 j = triples.get_persoongegevens(1884464)
 persoongegevens = concat([f, g, h, i, j])
-persoongegevens.to_csv("persoongegevens.csv")
+persoongegevens.to_csv("persoongegevens.csv", index=False)
 
 k = triples.get_organisatiegegevens(370945)
 l = triples.get_organisatiegegevens(363214)
@@ -324,7 +324,7 @@ m = triples.get_organisatiegegevens(363497)
 n = triples.get_organisatiegegevens(379035)
 o = triples.get_organisatiegegevens(374188)
 organisatiegegevens = concat([k, l, m, n, o])
-organisatiegegevens.to_csv("organisatiegegevens.csv")
+organisatiegegevens.to_csv("organisatiegegevens.csv", index=False)
 
 df = concat([productiegegevens, persoongegevens, organisatiegegevens])
 theaterteksten_ids = set(df[df["relatie"] == "TheaterText"]["value"].values)
@@ -332,4 +332,4 @@ theatertekstgegevens = []
 for tid in theaterteksten_ids:
     tid = tid.split("_")[-1]
     theatertekstgegevens.append(triples.get_theatertekstgegevens(tid))
-theatertekstgegevens.to_csv("theatertekstgegevens.csv")
+theatertekstgegevens.to_csv("theatertekstgegevens.csv", index=False)
