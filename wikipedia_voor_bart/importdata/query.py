@@ -13,6 +13,18 @@ class datakunstenbetriples():
         knst.set_client_encoding('UTF-8')
         self.cur = knst.cursor()
 
+    def get_titel(self, productie_id):
+        sql = """
+        SELECT
+            productions.title
+        FROM
+            production.productions
+        WHERE productions.id = {0}
+        """.format(productie_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchall()
+        return DataFrame([[productie_id, "titel", o[0]] for o in os], columns=["productie_id", "relatie", "value"])
+
     def get_functie_en_organisatie(self, productie_id):
         sql = """
         SELECT
@@ -165,14 +177,20 @@ class datakunstenbetriples():
         return DataFrame(lines, columns=["productie_id", "relatie", "value"])
 
     def get_productiegegevens(self, productie_id):
+        tit = triples.get_titel(productie_id)
         pfo = triples.get_functie_en_organisatie(productie_id)
         pfp = triples.get_functie_en_persoon(productie_id)
         ppremieredatumlocatie = triples.get_premieredatum_en_locatie(productie_id)
         theaterteksten = triples.get_gelinkte_theaterteksten(productie_id)
         speelperiode = triples.get_speelperiode(productie_id)
-        return concat([pfo, pfp, ppremieredatumlocatie, theaterteksten, speelperiode])
+        return concat([tit, pfo, pfp, ppremieredatumlocatie, theaterteksten, speelperiode])
 
 triples = datakunstenbetriples()
-productiegegevens = triples.get_productiegegevens(448736)
+a = triples.get_productiegegevens(448736)
+b = triples.get_productiegegevens(451020)
+c = triples.get_productiegegevens(438835)
+d = triples.get_productiegegevens(451382)
+e = triples.get_productiegegevens(440557)
+productiegegevens = concat([a, b, c, d, e])
 productiegegevens.to_csv("productiegegevens.csv")
 

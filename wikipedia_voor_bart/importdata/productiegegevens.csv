@@ -1,4 +1,5 @@
 ,productie_id,relatie,value
+0,448736,titel,Geen voeten maar
 0,448736,gezelschap_12173,Vanelle_373715
 1,448736,coproducent_12174,Cultuurcentrum Merksem_371137
 0,448736,concept & spel_11977,Nelle De Maeyer_1909946
@@ -8,3 +9,78 @@
 0,448736,premiere,"2011-09-24T00:00:00 (Cultuurcentrum Merksem, Merksem)"
 0,448736,TheaterText,Geen voeten maar_428864
 0,448736,speelperiode,2011-2014
+0,451020.0,titel,Het land Nod
+0,451020.0,gezelschap_12173,FC Bergman_372075
+1,451020.0,producent_12176,Toneelhuis_363214
+0,451020.0,van en met_12014,Stef Aerts_1912081
+1,451020.0,van en met_12014,Joé Agemans_1925683
+2,451020.0,van en met_12014,Bart Hollanders_1924151
+3,451020.0,van en met_12014,Matteo Simoni_1920330
+4,451020.0,van en met_12014,Thomas Verstraeten_1923649
+5,451020.0,van en met_12014,Marie Vinck_1898982
+0,451020.0,premiere,"2015-08-11T00:00:00 (Maaspoort Sports & Events, 's-Hertogenbosch)"
+0,449330.0,speelperiode,2014-2017
+0,438835,titel,Bezonken rood
+0,438835,coproducent_12174,Het Toneelhuis_371481
+1,438835,gezelschap_12173,Ro Theater_360934
+0,438835,naar_11739,Jeroen Brouwers_1891302
+1,438835,regie_11575,Guy Cassiers_1878246
+2,438835,spel_12018,Dirk Roofthooft_1877812
+3,438835,bewerking_11715,Guy Cassiers_1878246
+4,438835,bewerking_11715,Corien Baart_1901663
+5,438835,bewerking_11715,Dirk Roofthooft_1877812
+6,438835,decorontwerp_11710,Peter Missotten_1884365
+7,438835,video_11728,Peter Missotten_1884365
+8,438835,lichtontwerp_11722,Peter Missotten_1884365
+9,438835,geluidsontwerp_12119,Diederik De Cock_1897343
+10,438835,kostuumontwerp_11711,Katelijne Damen_1879633
+11,438835,video realisatie_11625,Arjen Klerkx_1914157
+12,438835,dramaturgie_11543,Erwin Jans_1883376
+0,438835,premiere,"2004-10-16T00:00:00 (Ro theater, Rotterdam)"
+0,438835,TheaterText,Bezonken Rood_422829
+0,438835,speelperiode,2004-2017
+0,451382.0,titel,De welwillenden
+0,451382.0,producent_12176,Toneelhuis_363214
+1,451382.0,gezelschap_12173,Toneelgroep Amsterdam_361154
+2,451382.0,in samenwerking_12177,Le Phénix - Scène nationale de Valenciennes_369234
+3,451382.0,in samenwerking_12177,Maison de la Culture d'Amiens_363752
+4,451382.0,in samenwerking_12177,Festival Temporada Alta_370897
+5,451382.0,in samenwerking_12177,International Istanbul Theatre Festival_370708
+6,451382.0,in samenwerking_12177,RomaEuropa Festival_368993
+7,451382.0,coproducent_12174,deSingel_363399
+0,451382.0,regie_11575,Guy Cassiers_1878246
+1,451382.0,bewerking_11715,Bart Meuleman_1884995
+2,451382.0,met_11741,Kevin Janssens_1908401
+3,451382.0,met_11741,Johan Van Assche_1878439
+4,451382.0,met_11741,Bart Slegers_1878696
+5,451382.0,met_11741,Alwin Pulinckx_1903202
+6,451382.0,tekst_11631,Jonathan Littell_1926859
+7,451382.0,dramaturgie_11543,Erwin Jans_1883376
+8,451382.0,met_11741,Katelijne Damen_1879633
+9,451382.0,met_11741,Abke Haring_1902344
+10,451382.0,met_11741,Hans Kesting_1895922
+11,451382.0,met_11741,Jip van den Dool_1935040
+12,451382.0,met_11741,Aus Greidanus jr._1900957
+0,451382.0,premiere,"2016-03-10T00:00:00 (Bourla, Antwerpen)"
+0,451382.0,speelperiode,2015-2017
+0,440557.0,titel,Deurdedeurdeur
+0,440557.0,gezelschap_12173,SKaGeN_369117
+0,440557.0,van_11995,Barbara De Laere_1918805
+1,440557.0,van_11995,Ryszard Turbiasz_1879577
+2,440557.0,van_11995,Charlotte Vandermeersch_1905261
+3,440557.0,van_11995,Kristof Morel_1891137
+4,440557.0,van_11995,Jeroen Wuyts_1900867
+5,440557.0,acteur_11571,Geert De Vleesschauwer_1919298
+6,440557.0,acteur_11571,Sofie Palmers_1902891
+7,440557.0,van_11995,Bruno Vanden Broecke_1899651
+8,440557.0,naar_11739,Michael Frayn_1886093
+9,440557.0,van_11995,Yves Degryse_1899648
+10,440557.0,van_11995,Valentijn Dhaenens_1897665
+11,440557.0,van_11995,Korneel Hamers_1899650
+12,440557.0,van_11995,Mathijs Scheepers_1899649
+13,440557.0,van_11995,Clara van den Broek_1897388
+14,440557.0,van_11995,Wannes Deneer_1920700
+15,440557.0,dramaturgie_11543,Eline Van Hoye_1911757
+0,440557.0,premiere,"2008-03-07T00:00:00 (Beursschouwburg, Brussel)"
+0,440557.0,speelperiode,2007-2009
+1,440557.0,speelperiode,2014-2015
