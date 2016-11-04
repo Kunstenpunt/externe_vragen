@@ -383,7 +383,7 @@ class datakunstenbetriples():
         """.format(organisatie_id)
         self.cur.execute(sql)
         os = self.cur.fetchone()
-        return DataFrame([[organisatie_id, "oprichtingsdatum", datetime(os[0], os[1], os[2]) if os else "NA"]], columns=["persoon_id", "relatie", "value"])
+        return DataFrame([[organisatie_id, "oprichtingsdatum", datetime(os[0], os[1], os[2]) if os else "NA"]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_einddatum(self, organisatie_id):
         pass
