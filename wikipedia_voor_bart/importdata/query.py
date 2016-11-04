@@ -469,7 +469,42 @@ class datakunstenbetriples():
         return DataFrame([[organisatie_id, "land", os[0]]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_relaties(self, organisatie_id):
-        pass
+        sql = """
+        SELECT
+          relationships.organisation_from_id,
+          relationships.organisation_relation_type_id,
+          organisation_relation_types.from_name_nl,
+          organisations.name
+        FROM
+          production.relationships,
+          production.organisation_relation_types,
+          production.organisations
+        WHERE
+          relationships.organisation_relation_type_id = organisation_relation_types.id AND
+          relationships.organisation_from_id = organisations.id AND
+          relationships.organisation_to_id = {0};""".format(organisatie_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchall()
+        df_to = DataFrame([[organisatie_id, o[2] + "_" + o[1], o[3] + "_" + o[0]] for o in os], columns=["organisatie_id", "relatie", "value"])
+
+        sql = """
+        SELECT
+          relationships.organisation_to_id,
+          relationships.organisation_relation_type_id,
+          organisation_relation_types.to_name_nl,
+          organisations.name
+        FROM
+          production.relationships,
+          production.organisation_relation_types,
+          production.organisations
+        WHERE
+          relationships.organisation_relation_type_id = organisation_relation_types.id AND
+          relationships.organisation_to_id = organisations.id AND
+          relationships.organisation_from_id = {0};""".format(organisatie_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchall()
+        df_from = DataFrame([[organisatie_id, o[2] + "_" + o[1], o[3] + "_" + o[0]] for o in os], columns=["organisatie_id", "relatie", "value"])
+        return concat([df_to, df_from])
 
     def get_organisatie_website(self, organisatie_id):
         sql = """
