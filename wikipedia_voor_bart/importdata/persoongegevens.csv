@@ -4,6 +4,7 @@ persoon_id,relatie,value
 1878826,sterftedatum,NA
 1878826,locatie,
 1878826,land,België
+1878826,gender,Man
 1878826,website,
 1878826,subsidie (jaar),NA
 1878826,TheaterText,Spelen op de rand van het podium: De Geliefden; Obscene fabels; De Bedevaart;_417533
@@ -13,6 +14,7 @@ persoon_id,relatie,value
 1909965.0,sterftedatum,NA
 1909965.0,locatie,Brussel
 1909965.0,land,België
+1909965.0,gender,Man
 1909965.0,website,
 1909965.0,subsidie (jaar),NA
 1878235,naam,Jan Decorte
@@ -20,6 +22,7 @@ persoon_id,relatie,value
 1878235,sterftedatum,NA
 1878235,locatie,Brussel
 1878235,land,België
+1878235,gender,Man
 1878235,website,
 1878235,subsidie (jaar),gewone werkbeurzen (2006)
 1878235,TheaterText,Titus Andonderonikustmijnklote_413207
@@ -50,6 +53,7 @@ persoon_id,relatie,value
 1879952,sterftedatum,NA
 1879952,locatie,Brussel
 1879952,land,België
+1879952,gender,Man
 1879952,website,
 1879952,subsidie (jaar),NA
 1879952,TheaterText,Ward Comblez. He do the life in different voices_411181
@@ -76,6 +80,7 @@ persoon_id,relatie,value
 1884464,sterftedatum,NA
 1884464,locatie,Antwerpen
 1884464,land,België
+1884464,gender,Vrouw
 1884464,website,
 1884464,subsidie (jaar),NA
 1884464,TheaterText,Ik voel mij als een boom_418649

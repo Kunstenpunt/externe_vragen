@@ -191,10 +191,11 @@ class datakunstenbetriples():
         sterftedatum = triples.get_persoon_sterftedatum(persoon_id)
         locatie = triples.get_persoon_locatie(persoon_id)
         land = triples.get_persoon_land(persoon_id)
+        gender = triples.get_persoon_gender(persoon_id)
         website = triples.get_persoon_website(persoon_id)
         subsidies = triples.get_persoon_subsidies(persoon_id)
         theaterteksten = triples.get_persoon_theaterteksten(persoon_id)
-        return concat([naam, geboortedatum, sterftedatum, locatie, land, website, subsidies, theaterteksten])
+        return concat([naam, geboortedatum, sterftedatum, locatie, land, gender, website, subsidies, theaterteksten])
 
     def get_persoon_naam(self, persoon_id):
         sql = """
@@ -275,6 +276,22 @@ class datakunstenbetriples():
         self.cur.execute(sql)
         os = self.cur.fetchone()
         return DataFrame([[persoon_id, "land", os[0]]], columns=["persoon_id", "relatie", "value"])
+
+    def get_persoon_gender(self, persoon_id):
+        sql = """
+        SELECT
+            genders.name_nl
+        FROM
+            production.people
+        INNER JOIN
+            production.genders
+        ON
+            people.gender_id = genders.id
+        WHERE people.id = {0}
+        """.format(persoon_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[persoon_id, "gender", os[0]]], columns=["persoon_id", "relatie", "value"])
 
     def get_persoon_website(self, persoon_id):
         sql = """
