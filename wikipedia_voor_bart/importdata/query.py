@@ -440,7 +440,16 @@ class datakunstenbetriples():
         return DataFrame([[organisatie_id, "activiteiteneinde", datetime(os[0], os[1], os[2]) if os else "NA"]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_locatie(self, organisatie_id):
-        pass
+        sql = """
+        SELECT
+            organisations.city
+        FROM
+            production.organisatie
+        WHERE organisations.id = {0}
+        """.format(organisatie_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[organisatie_id, "locatie", os[0]]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_relaties(self, organisatie_id):
         pass
