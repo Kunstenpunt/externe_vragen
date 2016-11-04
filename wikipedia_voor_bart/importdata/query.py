@@ -484,7 +484,21 @@ class datakunstenbetriples():
         return DataFrame([[organisatie_id, "website", os[0]]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_subsidies(self, organisatie_id):
-        pass
+        sql = """
+        SELECT
+            subsidy_types.title_nl,
+            grants.period
+        FROM
+            production.grants
+        INNER JOIN
+            production.subsidy_types
+        ON
+            grants.subsidy_type_id = subsidy_types.id
+        WHERE grants.organisation_id = {0}
+        """.format(organisatie_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[organisatie_id, "subsidie (jaar)", os[0] + " (" + str(os[1]) + ")" if os else "NA"]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_theaterteksten(self, organisatie_id):
         pass
