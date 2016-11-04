@@ -404,7 +404,22 @@ class datakunstenbetriples():
         return DataFrame([[organisatie_id, "einddatum", datetime(os[0], os[1], os[2]) if os else "NA"]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_activiteitenstart(self, organisatie_id):
-        pass
+        sql = """
+        SELECT
+            date_isaars.year,
+            date_isaars.month,
+            date_isaars.day
+        FROM
+            production.organisations
+        INNER JOIN
+            production.date_isaars
+        ON
+            organisations.start_activities_date_id = date_isaars.id
+        WHERE organisations.id = {0}
+        """.format(organisatie_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[organisatie_id, "activiteitenstart", datetime(os[0], os[1], os[2]) if os else "NA"]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_activiteiteneinde(self, organisatie_id):
         pass
