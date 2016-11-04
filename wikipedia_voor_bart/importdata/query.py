@@ -358,17 +358,32 @@ class datakunstenbetriples():
     def get_organisatie_naam(self, organisatie_id):
         sql = """
         SELECT
-            people.full_name
+            organisations.name
         FROM
-            production.people
-        WHERE people.id = {0}
+            production.organisatie
+        WHERE organisations.id = {0}
         """.format(organisatie_id)
         self.cur.execute(sql)
         os = self.cur.fetchone()
         return DataFrame([[organisatie_id, "naam", os[0]]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_oprichtingsdatum(self, organisatie_id):
-        pass
+        sql = """
+        SELECT
+            date_isaars.year,
+            date_isaars.month,
+            date_isaars.day
+        FROM
+            production.organisations
+        INNER JOIN
+            production.date_isaars
+        ON
+            organisations.creation_date_id = date_isaars.id
+        WHERE organisations.id = {0}
+        """.format(organisatie_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[organisatie_id, "oprichtingsdatum", datetime(os[0], os[1], os[2]) if os else "NA"]], columns=["persoon_id", "relatie", "value"])
 
     def get_organisatie_einddatum(self, organisatie_id):
         pass
