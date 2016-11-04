@@ -349,11 +349,12 @@ class datakunstenbetriples():
         start_activiteiten = triples.get_organisatie_activiteitenstart(organisatie_id)
         einde_activiteiten = triples.get_organisatie_activiteiteneinde(organisatie_id)
         locatie = triples.get_organisatie_locatie(organisatie_id)
+        land = triples.get_organisatie_land(organisatie_id)
         organisatierelaties = triples.get_organisatie_relaties(organisatie_id)
         website = triples.get_organisatie_website(organisatie_id)
         subsidies = triples.get_organisatie_subsidies(organisatie_id)
         theaterteksten = triples.get_organisatie_theaterteksten(organisatie_id)
-        return concat([naam, oprichtingsdatum, einddatum, start_activiteiten, einde_activiteiten, locatie, organisatierelaties, website, archiefwebsite, subsidies, theaterteksten])
+        return concat([naam, oprichtingsdatum, einddatum, start_activiteiten, einde_activiteiten, locatie, land, organisatierelaties, website, archiefwebsite, subsidies, theaterteksten])
 
     def get_organisatie_naam(self, organisatie_id):
         sql = """
@@ -450,6 +451,22 @@ class datakunstenbetriples():
         self.cur.execute(sql)
         os = self.cur.fetchone()
         return DataFrame([[organisatie_id, "locatie", os[0]]], columns=["organisatie_id", "relatie", "value"])
+
+    def get_organisatie_land(self, organisatie_id):
+        sql = """
+        SELECT
+            countries.name_nl
+        FROM
+            production.organisations
+        INNER JOIN
+            production.countries
+        ON
+            organisations.country_id = countries.id
+        WHERE organisations.id = {0}
+        """.format(organisatie_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[organisatie_id, "land", os[0]]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_relaties(self, organisatie_id):
         pass
