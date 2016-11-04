@@ -354,14 +354,14 @@ class datakunstenbetriples():
         website = triples.get_organisatie_website(organisatie_id)
         subsidies = triples.get_organisatie_subsidies(organisatie_id)
         theaterteksten = triples.get_organisatie_theaterteksten(organisatie_id)
-        return concat([naam, oprichtingsdatum, einddatum, start_activiteiten, einde_activiteiten, locatie, land, organisatierelaties, website, archiefwebsite, subsidies, theaterteksten])
+        return concat([naam, oprichtingsdatum, einddatum, start_activiteiten, einde_activiteiten, locatie, land, organisatierelaties, website, subsidies, theaterteksten])
 
     def get_organisatie_naam(self, organisatie_id):
         sql = """
         SELECT
             organisations.name
         FROM
-            production.organisatie
+            production.organisations
         WHERE organisations.id = {0}
         """.format(organisatie_id)
         self.cur.execute(sql)
@@ -384,7 +384,7 @@ class datakunstenbetriples():
         """.format(organisatie_id)
         self.cur.execute(sql)
         os = self.cur.fetchone()
-        return DataFrame([[organisatie_id, "oprichtingsdatum", datetime(os[0], os[1], os[2]) if os else "NA"]], columns=["organisatie_id", "relatie", "value"])
+        return DataFrame([[organisatie_id, "oprichtingsdatum", datetime(os[0], os[1] if os[1] else 1, os[2] if os[2] else 1) if os else "NA"]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_einddatum(self, organisatie_id):
         sql = """
@@ -445,7 +445,7 @@ class datakunstenbetriples():
         SELECT
             organisations.city
         FROM
-            production.organisatie
+            production.organisations
         WHERE organisations.id = {0}
         """.format(organisatie_id)
         self.cur.execute(sql)
@@ -466,7 +466,7 @@ class datakunstenbetriples():
         """.format(organisatie_id)
         self.cur.execute(sql)
         os = self.cur.fetchone()
-        return DataFrame([[organisatie_id, "land", os[0]]], columns=["organisatie_id", "relatie", "value"])
+        return DataFrame([[organisatie_id, "land", os[0] if os else "NA"]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_relaties(self, organisatie_id):
         sql = """
@@ -485,7 +485,7 @@ class datakunstenbetriples():
           relationships.organisation_to_id = {0};""".format(organisatie_id)
         self.cur.execute(sql)
         os = self.cur.fetchall()
-        df_to = DataFrame([[organisatie_id, o[2] + "_" + o[1], o[3] + "_" + o[0]] for o in os], columns=["organisatie_id", "relatie", "value"])
+        df_to = DataFrame([[organisatie_id, o[2] + "_" + str(o[1]), o[3] + "_" + str([0])] for o in os], columns=["organisatie_id", "relatie", "value"])
 
         sql = """
         SELECT
@@ -503,7 +503,7 @@ class datakunstenbetriples():
           relationships.organisation_from_id = {0};""".format(organisatie_id)
         self.cur.execute(sql)
         os = self.cur.fetchall()
-        df_from = DataFrame([[organisatie_id, o[2] + "_" + o[1], o[3] + "_" + o[0]] for o in os], columns=["organisatie_id", "relatie", "value"])
+        df_from = DataFrame([[organisatie_id, o[2] + "_" + str(o[1]), o[3] + "_" + str(o[0])] for o in os], columns=["organisatie_id", "relatie", "value"])
         return concat([df_to, df_from])
 
     def get_organisatie_website(self, organisatie_id):
