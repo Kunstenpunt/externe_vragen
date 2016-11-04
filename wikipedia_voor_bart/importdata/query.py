@@ -501,7 +501,23 @@ class datakunstenbetriples():
         return DataFrame([[organisatie_id, "subsidie (jaar)", os[0] + " (" + str(os[1]) + ")" if os else "NA"]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_theaterteksten(self, organisatie_id):
-        pass
+        sql = """
+        SELECT
+          relationships.organisation_id,
+          book_titles.class_name,
+          book_titles.title_nl,
+          book_titles.id
+        FROM
+          production.book_titles,
+          production.relationships
+        WHERE
+          relationships.book_title_id = book_titles.id AND
+          book_titles.class_name = 'TheaterText' AND
+          relationships.organisation_id = {0};
+        """.format(organisatie_id)
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return DataFrame([[str(tt[0]), tt[1], tt[2] + "_" + str(tt[3])] for tt in tts], columns=["organisatie_id", "relatie", "value"])
 
     def get_theatertekstgegevens(self, theatertekst_id):
         titel = triples.get_theatertekst_titel(theatertekst_id)
