@@ -472,7 +472,16 @@ class datakunstenbetriples():
         pass
 
     def get_organisatie_website(self, organisatie_id):
-        pass
+        sql = """
+        SELECT
+            organisations.url
+        FROM
+            production.organisations
+        WHERE organisations.id = {0}
+        """.format(organisatie_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[organisatie_id, "website", os[0]]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_subsidies(self, organisatie_id):
         pass
