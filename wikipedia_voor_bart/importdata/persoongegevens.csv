@@ -6,7 +6,6 @@ persoon_id,relatie,value
 1878826,land,België
 1878826,gender,Man
 1878826,website,
-1878826,subsidie (jaar),NA
 1878826,TheaterText,Spelen op de rand van het podium: De Geliefden; Obscene fabels; De Bedevaart;_417533
 1878826,TheaterText,Dodendans_424160
 1909965.0,naam,Carl Von Winckelmann
@@ -16,7 +15,6 @@ persoon_id,relatie,value
 1909965.0,land,België
 1909965.0,gender,Man
 1909965.0,website,
-1909965.0,subsidie (jaar),NA
 1878235,naam,Jan Decorte
 1878235,geboortedatum,1950-05-09 00:00:00
 1878235,sterftedatum,NA
@@ -25,6 +23,15 @@ persoon_id,relatie,value
 1878235,gender,Man
 1878235,website,
 1878235,subsidie (jaar),gewone werkbeurzen (2006)
+1878235,subsidie (jaar),gewone werkbeurzen (2007)
+1878235,subsidie (jaar),gewone werkbeurzen (2007)
+1878235,subsidie (jaar),ontwikkelingsbeurs (2010)
+1878235,subsidie (jaar),projectbeurs (2011)
+1878235,subsidie (jaar),projectbeurs (2011)
+1878235,subsidie (jaar),gewone werkbeurzen (2009)
+1878235,subsidie (jaar),gewone werkbeurzen (2007)
+1878235,subsidie (jaar),projectbeurs (2012)
+1878235,subsidie (jaar),gewone werkbeurzen (2008)
 1878235,TheaterText,Titus Andonderonikustmijnklote_413207
 1878235,TheaterText,Kosmika_412068
 1878235,TheaterText,"Meneer, de zot & het kind_411198"
@@ -55,7 +62,6 @@ persoon_id,relatie,value
 1879952,land,België
 1879952,gender,Man
 1879952,website,
-1879952,subsidie (jaar),NA
 1879952,TheaterText,Ward Comblez. He do the life in different voices_411181
 1879952,TheaterText,Het kind van de smid_411180
 1879952,TheaterText,Ward Comblez: L'Enfant du Forgeron_414225
@@ -82,5 +88,4 @@ persoon_id,relatie,value
 1884464,land,België
 1884464,gender,Vrouw
 1884464,website,
-1884464,subsidie (jaar),NA
 1884464,TheaterText,Ik voel mij als een boom_418649

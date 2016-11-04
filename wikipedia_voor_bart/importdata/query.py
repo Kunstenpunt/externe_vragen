@@ -319,8 +319,8 @@ class datakunstenbetriples():
         WHERE grants.person_id = {0}
         """.format(persoon_id)
         self.cur.execute(sql)
-        os = self.cur.fetchone()
-        return DataFrame([[persoon_id, "subsidie (jaar)", os[0] + " (" + str(os[1]) + ")" if os else "NA"]], columns=["persoon_id", "relatie", "value"])
+        os = self.cur.fetchall()
+        return DataFrame([[persoon_id, "subsidie (jaar)", o[0] + " (" + str(o[1]) + ")" if o else "NA"] for o in os], columns=["persoon_id", "relatie", "value"])
 
     def get_persoon_theaterteksten(self, persoon_id):
         sql = """
@@ -532,8 +532,8 @@ class datakunstenbetriples():
         WHERE grants.organisation_id = {0}
         """.format(organisatie_id)
         self.cur.execute(sql)
-        os = self.cur.fetchone()
-        return DataFrame([[organisatie_id, "subsidie (jaar)", os[0] + " (" + str(os[1]) + ")" if os else "NA"]], columns=["organisatie_id", "relatie", "value"])
+        os = self.cur.fetchall()
+        return DataFrame([[organisatie_id, "subsidie (jaar)", o[0] + " (" + str(o[1]) + ")" if o else "NA"] for o in os], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_theaterteksten(self, organisatie_id):
         sql = """

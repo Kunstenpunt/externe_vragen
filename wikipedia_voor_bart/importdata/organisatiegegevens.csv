@@ -10,6 +10,9 @@ organisatie_id,relatie,value
 370945,Voortgezet als_127,Publiekstheater_369514
 370945,website,http://www.ntgent.be/
 370945,subsidie (jaar),structureel diverse duur (2006-2009)
+370945,subsidie (jaar),projectbeurs (1-6/2005 )
+370945,subsidie (jaar),structureel diverse duur (2010-2012)
+370945,subsidie (jaar),structureel diverse duur (2013-2016)
 370945,TheaterText,"Uw darmen, een marktonderzoek_425160"
 370945,TheaterText,Lex_425149
 370945,TheaterText,"Tien Geboden (deel 1, geboden I-V)_425560"
@@ -43,6 +46,8 @@ organisatie_id,relatie,value
 363214,Werkt samen met_129,FC Bergman_372075
 363214,website,http://www.toneelhuis.be
 363214,subsidie (jaar),structureel diverse duur (2006-2009)
+363214,subsidie (jaar),structureel diverse duur (2013-2016)
+363214,subsidie (jaar),structureel diverse duur (2010-2012)
 363214,TheaterText,De versie Claus_425153
 363214,TheaterText,Atropa. La vengeance de la paix_425277
 363214,TheaterText,Mefisto for ever_425278
@@ -89,6 +94,12 @@ organisatie_id,relatie,value
 363497,Heeft als festival_128,WoWmen!_374008
 363497,website,http://www.kaaitheater.be
 363497,subsidie (jaar),structureel diverse duur (1993-1996)
+363497,subsidie (jaar),structureel diverse duur (1997-2000)
+363497,subsidie (jaar),structureel diverse duur (2001-2005)
+363497,subsidie (jaar),structureel diverse duur (2010-2012)
+363497,subsidie (jaar),structureel diverse duur (2013-2016)
+363497,subsidie (jaar),structureel diverse duur (2006-2009)
+363497,subsidie (jaar),structureel diverse duur (1997-2000)
 363497,TheaterText,Het kind van de smid_411180
 363497,TheaterText,Ajax_413282
 363497,TheaterText,In de eenzaamheid van de katoenvelden_413571
@@ -115,7 +126,6 @@ organisatie_id,relatie,value
 379035.0,locatie,
 379035.0,land,NA
 379035.0,website,
-379035.0,subsidie (jaar),NA
 374188.0,naam,Opera Vlaanderen
 374188.0,oprichtingsdatum,NA
 374188.0,einddatum,NA
@@ -127,4 +137,3 @@ organisatie_id,relatie,value
 374188.0,Heeft als onderdeel_124,Kunsthuis Opera Ballet Vlaanderen_374190
 374188.0,Voortgezet als_127,Vlaamse Opera_362321
 374188.0,website,https://operaballet.be/nl
-374188.0,subsidie (jaar),NA
