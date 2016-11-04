@@ -356,7 +356,16 @@ class datakunstenbetriples():
         return concat([naam, oprichtingsdatum, einddatum, start_activiteiten, einde_activiteiten, locatie, organisatierelaties, website, archiefwebsite, subsidies, theaterteksten])
 
     def get_organisatie_naam(self, organisatie_id):
-        pass
+        sql = """
+        SELECT
+            people.full_name
+        FROM
+            production.people
+        WHERE people.id = {0}
+        """.format(organisatie_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[organisatie_id, "naam", os[0]]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_oprichtingsdatum(self, organisatie_id):
         pass
