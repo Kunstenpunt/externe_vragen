@@ -583,6 +583,10 @@ class datakunstenbetriples():
         vertalers = triples.get_theatertekst_vertalers(theatertekst_id)
         uitgevers = triples.get_theatertekst_uitgevers(theatertekst_id)
         isbn_ean = triples.get_theatertekst_isbn_ean(theatertekst_id)
+        organisaties = triples.get_theatertekst_organisaties(theatertekst_id)
+        personen = triples.get_theatertekst_personen(theatertekst_id)
+        producties = triples.get_theatertekst_producties(theatertekst_id)
+        return concat(titel, auteurs, vertalers, uitgevers, isbn_ean, organisaties, personen, producties)
 
     def get_theatertekst_isbn_ean(self, theatertekst_id):
         pass
@@ -597,6 +601,15 @@ class datakunstenbetriples():
         pass
 
     def get_theatertekst_titel(self, theatertekst_id):
+        pass
+
+    def get_theatertekst_organisaties(self, theatertekst_id):
+        pass
+
+    def get_theatertekst_personen(self, theatertekst_id):
+        pass
+
+    def get_theatertekst_producties(self, theatertekst_id):
         pass
 
 triples = datakunstenbetriples()
@@ -627,10 +640,10 @@ organisatiegegevens = concat([k, l, m, n, o])
 organisatiegegevens["organisatie_id"] = organisatiegegevens["organisatie_id"].apply(int)
 organisatiegegevens.to_csv("organisatiegegevens.csv", index=False)
 
-# df = concat([productiegegevens, persoongegevens])
-# theaterteksten_ids = set(df[df["relatie"] == "TheaterText"]["value"].values)
-# theatertekstgegevens = []
-# for tid in theaterteksten_ids:
-#     tid = tid.split("_")[-1]
-#     theatertekstgegevens.append(triples.get_theatertekstgegevens(tid))
-# concat(theatertekstgegevens).to_csv("theatertekstgegevens.csv", index=False)
+p = triples.get_theatertekstgegevens()
+q = triples.get_theatertekstgegevens()
+r = triples.get_theatertekstgegevens()
+s = triples.get_theatertekstgegevens()
+t = triples.get_theatertekstgegevens()
+theatertekstgegevens = concat(p, q, r, s, t)
+theatertekstgegevens.to_csv("theatertekstgegevens.csv", index=False)
