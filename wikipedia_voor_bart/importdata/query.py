@@ -181,9 +181,8 @@ class datakunstenbetriples():
         pfo = triples.get_productie_functie_en_organisatie(productie_id)
         pfp = triples.get_productie_functie_en_persoon(productie_id)
         ppremieredatumlocatie = triples.get_productie_premieredatum_en_locatie(productie_id)
-        theaterteksten = triples.get_productie_theaterteksten(productie_id)
         speelperiode = triples.get_productie_speelperiode(productie_id)
-        return concat([tit, pfo, pfp, ppremieredatumlocatie, theaterteksten, speelperiode])
+        return concat([tit, pfo, pfp, ppremieredatumlocatie, speelperiode])
 
     def get_persoongegevens(self, persoon_id):
         naam = triples.get_persoon_naam(persoon_id)
@@ -193,9 +192,9 @@ class datakunstenbetriples():
         land = triples.get_persoon_land(persoon_id)
         gender = triples.get_persoon_gender(persoon_id)
         website = triples.get_persoon_website(persoon_id)
+        archiefwebsite = triples.get_persoon_archiefwebsite(persoon_id)
         subsidies = triples.get_persoon_subsidies(persoon_id)
-        theaterteksten = triples.get_persoon_theaterteksten(persoon_id)
-        return concat([naam, geboortedatum, sterftedatum, locatie, land, gender, website, subsidies, theaterteksten])
+        return concat([naam, geboortedatum, sterftedatum, locatie, land, gender, website, archiefwebsite, subsidies])
 
     def get_persoon_naam(self, persoon_id):
         sql = """
@@ -305,6 +304,18 @@ class datakunstenbetriples():
         os = self.cur.fetchone()
         return DataFrame([[persoon_id, "website", os[0]]], columns=["persoon_id", "relatie", "value"])
 
+    def get_persoon_archiefwebsite(self, persoon_id):
+        sql = """
+        SELECT
+            people.archive_url
+        FROM
+            production.people
+        WHERE people.id = {0}
+        """.format(persoon_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[persoon_id, "archiefwebsite", os[0]]], columns=["persoon_id", "relatie", "value"])
+
     def get_persoon_subsidies(self, persoon_id):
         sql = """
         SELECT
@@ -352,9 +363,9 @@ class datakunstenbetriples():
         land = triples.get_organisatie_land(organisatie_id)
         organisatierelaties = triples.get_organisatie_relaties(organisatie_id)
         website = triples.get_organisatie_website(organisatie_id)
+        archiefwebsite = triples.get_organisatie_archiefwebsite(organisatie_id)
         subsidies = triples.get_organisatie_subsidies(organisatie_id)
-        theaterteksten = triples.get_organisatie_theaterteksten(organisatie_id)
-        return concat([naam, oprichtingsdatum, einddatum, start_activiteiten, einde_activiteiten, locatie, land, organisatierelaties, website, subsidies, theaterteksten])
+        return concat([naam, oprichtingsdatum, einddatum, start_activiteiten, einde_activiteiten, locatie, land, organisatierelaties, website, archiefwebsite, subsidies])
 
     def get_organisatie_naam(self, organisatie_id):
         sql = """
@@ -485,7 +496,7 @@ class datakunstenbetriples():
           relationships.organisation_to_id = {0};""".format(organisatie_id)
         self.cur.execute(sql)
         os = self.cur.fetchall()
-        df_to = DataFrame([[organisatie_id, o[2] + "_" + str(o[1]), o[3] + "_" + str([0])] for o in os], columns=["organisatie_id", "relatie", "value"])
+        df_to = DataFrame([[organisatie_id, o[2] + "_" + str(o[1]), o[3] + "_" + str(o[0])] for o in os], columns=["organisatie_id", "relatie", "value"])
 
         sql = """
         SELECT
@@ -517,6 +528,18 @@ class datakunstenbetriples():
         self.cur.execute(sql)
         os = self.cur.fetchone()
         return DataFrame([[organisatie_id, "website", os[0]]], columns=["organisatie_id", "relatie", "value"])
+
+    def get_organisatie_archiefwebsite(self, organisatie_id):
+        sql = """
+        SELECT
+            organisations.archive_url
+        FROM
+            production.organisations
+        WHERE organisations.id = {0}
+        """.format(organisatie_id)
+        self.cur.execute(sql)
+        os = self.cur.fetchone()
+        return DataFrame([[organisatie_id, "archiefwebsite", os[0]]], columns=["organisatie_id", "relatie", "value"])
 
     def get_organisatie_subsidies(self, organisatie_id):
         sql = """
@@ -583,6 +606,7 @@ c = triples.get_productiegegevens(438835)
 d = triples.get_productiegegevens(451382)
 e = triples.get_productiegegevens(440557)
 productiegegevens = concat([a, b, c, d, e])
+productiegegevens["productie_id"] = productiegegevens["productie_id"].apply(int)
 productiegegevens.to_csv("productiegegevens.csv", index=False)
 
 f = triples.get_persoongegevens(1878826)
@@ -591,6 +615,7 @@ h = triples.get_persoongegevens(1878235)
 i = triples.get_persoongegevens(1879952)
 j = triples.get_persoongegevens(1884464)
 persoongegevens = concat([f, g, h, i, j])
+persoongegevens["persoon_id"] = persoongegevens["persoon_id"].apply(int)
 persoongegevens.to_csv("persoongegevens.csv", index=False)
 
 k = triples.get_organisatiegegevens(370945)
@@ -599,6 +624,7 @@ m = triples.get_organisatiegegevens(363497)
 n = triples.get_organisatiegegevens(379035)
 o = triples.get_organisatiegegevens(374188)
 organisatiegegevens = concat([k, l, m, n, o])
+organisatiegegevens["organisatie_id"] = organisatiegegevens["organisatie_id"].apply(int)
 organisatiegegevens.to_csv("organisatiegegevens.csv", index=False)
 
 # df = concat([productiegegevens, persoongegevens])

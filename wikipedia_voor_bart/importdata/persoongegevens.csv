@@ -6,15 +6,15 @@ persoon_id,relatie,value
 1878826,land,België
 1878826,gender,Man
 1878826,website,
-1878826,TheaterText,Spelen op de rand van het podium: De Geliefden; Obscene fabels; De Bedevaart;_417533
-1878826,TheaterText,Dodendans_424160
-1909965.0,naam,Carl Von Winckelmann
-1909965.0,geboortedatum,NA
-1909965.0,sterftedatum,NA
-1909965.0,locatie,Brussel
-1909965.0,land,België
-1909965.0,gender,Man
-1909965.0,website,
+1878826,archiefwebsite,
+1909965,naam,Carl Von Winckelmann
+1909965,geboortedatum,NA
+1909965,sterftedatum,NA
+1909965,locatie,Brussel
+1909965,land,België
+1909965,gender,Man
+1909965,website,
+1909965,archiefwebsite,
 1878235,naam,Jan Decorte
 1878235,geboortedatum,1950-05-09 00:00:00
 1878235,sterftedatum,NA
@@ -22,6 +22,7 @@ persoon_id,relatie,value
 1878235,land,België
 1878235,gender,Man
 1878235,website,
+1878235,archiefwebsite,
 1878235,subsidie (jaar),gewone werkbeurzen (2006)
 1878235,subsidie (jaar),gewone werkbeurzen (2007)
 1878235,subsidie (jaar),gewone werkbeurzen (2007)
@@ -32,29 +33,6 @@ persoon_id,relatie,value
 1878235,subsidie (jaar),gewone werkbeurzen (2007)
 1878235,subsidie (jaar),projectbeurs (2012)
 1878235,subsidie (jaar),gewone werkbeurzen (2008)
-1878235,TheaterText,Titus Andonderonikustmijnklote_413207
-1878235,TheaterText,Kosmika_412068
-1878235,TheaterText,"Meneer, de zot & het kind_411198"
-1878235,TheaterText,In het moeras_411199
-1878235,TheaterText,Peer Gynt_410197
-1878235,TheaterText,Het spel van de Spaanse monnik Ambrosio_412414
-1878235,TheaterText,Lieve Hemel!_410218
-1878235,TheaterText,Oeuvres_413279
-1878235,TheaterText,Comédie (Kleur is alles)_413394
-1878235,TheaterText,Opérette: Het Stuk-Stuk ; In Ondertussendoor ; Naar Vulvania_413393
-1878235,TheaterText,"Petits Classiques:  In het moeras ; Meneer, de zot & tkint ; Titus Andonderonikust mijnklote_413392"
-1878235,TheaterText,Magna Opera Düus_414821
-1878235,TheaterText,Kleur is alles_414995
-1878235,TheaterText,In het kasteel_415601
-1878235,TheaterText,Marieslijk_415642
-1878235,TheaterText,Sasja danse_415797
-1878235,TheaterText,Amlett_416214
-1878235,TheaterText,"""Betonliebe + Fleischkrieg"" Medeia_416311"
-1878235,TheaterText,Kleur is alles_415052
-1878235,TheaterText,Wintervögelchen_425539
-1878235,TheaterText,Het Stuk-Stuk_424873
-1878235,TheaterText,Shylock_428175
-1878235,TheaterText,Shylock_428254
 1879952,naam,Josse De Pauw
 1879952,geboortedatum,1952-03-15 00:00:00
 1879952,sterftedatum,NA
@@ -62,25 +40,7 @@ persoon_id,relatie,value
 1879952,land,België
 1879952,gender,Man
 1879952,website,
-1879952,TheaterText,Ward Comblez. He do the life in different voices_411181
-1879952,TheaterText,Het kind van de smid_411180
-1879952,TheaterText,Ward Comblez: L'Enfant du Forgeron_414225
-1879952,TheaterText,Weg_414614
-1879952,TheaterText,Zetelkat_414646
-1879952,TheaterText,Het kind van de Smid: a translation of the play into English with an introduction and Comments_415090
-1879952,TheaterText,Klein Magazijn 3: teksten voor jeugdtheater_415578
-1879952,TheaterText,Werk_415791
-1879952,TheaterText,Ward Gomblez; l' Enfant du Forgeron_415858
-1879952,TheaterText,No Comment_419904
-1879952,TheaterText,Larf_417529
-1879952,TheaterText,Übung_418692
-1879952,TheaterText,"Sieben Stücke aus Flandern und den Niederlanden: Zu Hause; Fälschung wie sie ist, unverfälscht; Leas Hochzeit; Ward Comblez; Silikon - Pick-up - Schnickschnack; Gespräche über G.; Ein schwarzer Pole_412851"
-1879952,TheaterText,Klein Magazijn 4: Teksten voor jeugdtheater_419420
-1879952,TheaterText,Nog_421541
-1879952,TheaterText,Dédé le taxi_422958
-1879952,TheaterText,Wortel van glas_423468
-1879952,TheaterText,Die siel van die mier_419626
-1879952,TheaterText,Onder de vulkaan_425931
+1879952,archiefwebsite,
 1884464,naam,Leah Thys
 1884464,geboortedatum,1905-04-28 00:00:00
 1884464,sterftedatum,NA
@@ -88,4 +48,4 @@ persoon_id,relatie,value
 1884464,land,België
 1884464,gender,Vrouw
 1884464,website,
-1884464,TheaterText,Ik voel mij als een boom_418649
+1884464,archiefwebsite,
