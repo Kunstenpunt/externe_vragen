@@ -1,0 +1,46 @@
+theatertekst_id,relatie,value
+428000,titel,Toneel compleet
+428000,uitgever_id,G.A. Van Oorschot_115108
+428000,isbn_ean,9789028242692
+428000,vertaling,Yolanda Bloemen_1896892
+428000,vertaling,Marja Wiebes_1896893
+412806,titel,Roberto Zucco
+412806,uitgever_id,TONEELGROEP AMSTERDAM_115470
+412806,uitgever_id,International Theatre & Film Books_114495
+412806,isbn_ean,9789064032769
+412806,vertaling,Therese Cornips_1887388
+412806,auteur,Bernard-Marie Koltès_1878231
+426162,titel,De Volder in Stukken: Toneel 1988-2010
+426162,uitgever_id,Uitgeverij Vrijdag_118344
+426162,isbn_ean,9789460010910
+426162,gerelateerde_organisation_id,362442
+426162,auteur,Eric De Volder_1877508
+426162,gerelateerde_productie_id,429705
+426162,gerelateerde_productie_id,430084
+426162,gerelateerde_productie_id,436182
+426162,gerelateerde_productie_id,430331
+426162,gerelateerde_productie_id,431141
+426162,gerelateerde_productie_id,430140
+426162,gerelateerde_productie_id,434706
+426162,gerelateerde_productie_id,434727
+426162,gerelateerde_productie_id,435818
+426162,gerelateerde_productie_id,437236
+426162,gerelateerde_productie_id,436583
+426162,gerelateerde_productie_id,437888
+426162,gerelateerde_productie_id,437507
+426162,gerelateerde_productie_id,438097
+426162,gerelateerde_productie_id,438779
+426162,gerelateerde_productie_id,439006
+426162,gerelateerde_productie_id,439810
+426162,gerelateerde_productie_id,441466
+426162,gerelateerde_productie_id,442577
+426162,gerelateerde_productie_id,426337
+426162,gerelateerde_productie_id,429351
+415016,titel,De nieuwe tijd
+415016,uitgever_id,International Theatre & Film Books_114495
+415016,isbn_ean,9789064035180
+415016,gerelateerde_organisation_id,363134
+415016,auteur,Jeroen van den Berg_1884274
+427945,titel,Kaspar
+427945,uitgever_id,De Nieuwe Toneelbibliotheek_118297
+427945,isbn_ean,9789460761560

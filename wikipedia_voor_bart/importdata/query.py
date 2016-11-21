@@ -579,38 +579,111 @@ class datakunstenbetriples():
 
     def get_theatertekstgegevens(self, theatertekst_id):
         titel = triples.get_theatertekst_titel(theatertekst_id)
-        auteurs = triples.get_theatertekst_auteurs(theatertekst_id)
-        vertalers = triples.get_theatertekst_vertalers(theatertekst_id)
         uitgevers = triples.get_theatertekst_uitgevers(theatertekst_id)
         isbn_ean = triples.get_theatertekst_isbn_ean(theatertekst_id)
         organisaties = triples.get_theatertekst_organisaties(theatertekst_id)
         personen = triples.get_theatertekst_personen(theatertekst_id)
         producties = triples.get_theatertekst_producties(theatertekst_id)
-        return concat(titel, auteurs, vertalers, uitgevers, isbn_ean, organisaties, personen, producties)
+        return concat([titel, uitgevers, isbn_ean, organisaties, personen, producties])
 
     def get_theatertekst_isbn_ean(self, theatertekst_id):
-        pass
+        sql = """SELECT
+                   book_titles.id,
+                   book_titles.ean
+                 FROM
+                   production.book_titles
+                 WHERE
+                   book_titles.id = {0};""".format(theatertekst_id)
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return DataFrame([[str(tt[0]), "isbn_ean", str(tt[1])] for tt in tts],
+                         columns=["theatertekst_id", "relatie", "value"])
 
     def get_theatertekst_uitgevers(self, theatertekst_id):
-        pass
+        sql = """SELECT
+                    impressums.publisher,
+                    impressums.id
 
-    def get_theatertekst_vertalers(self, theatertekst_id):
-        pass
-
-    def get_theatertekst_auteurs(self, theatertekst_id):
-        pass
+                FROM
+                    production.book_titles,
+                    production.impressums,
+                    production.book_title_impressums
+                WHERE
+                    book_titles.id = book_title_impressums.book_title_id
+                AND
+                    book_title_impressums.impressum_id = impressums.id
+                AND
+                    book_titles.id = {0};""".format(theatertekst_id)
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return DataFrame([[str(theatertekst_id), "uitgever_id", str(tt[0]) + "_" + str(tt[1])] for tt in tts],
+                         columns=["theatertekst_id", "relatie", "value"])
 
     def get_theatertekst_titel(self, theatertekst_id):
-        pass
+        sql = """SELECT
+                   book_titles.id,
+                   book_titles.title_nl
+                 FROM
+                   production.book_titles
+                 WHERE
+                   book_titles.id = {0};""".format(theatertekst_id)
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return DataFrame([[str(tt[0]), "titel", str(tt[1])] for tt in tts],
+                         columns=["theatertekst_id", "relatie", "value"])
 
     def get_theatertekst_organisaties(self, theatertekst_id):
-        pass
+        sql = """SELECT
+                   book_titles.id,
+                   relationships.organisation_id
+                 FROM
+                   production.book_titles,
+                   production.relationships
+                 WHERE
+                   relationships.book_title_id = book_titles.id
+                 AND
+                   book_titles.id = {0};""".format(theatertekst_id)
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return DataFrame([[str(tt[0]), "gerelateerde_organisation_id", str(tt[1])] for tt in tts if tt[1]],
+                         columns=["theatertekst_id", "relatie", "value"])
 
     def get_theatertekst_personen(self, theatertekst_id):
-        pass
+        sql = """SELECT
+                  book_titles.id,
+                  people.id,
+                  people.full_name,
+                  functions.name_nl
+                FROM
+                  production.book_titles,
+                  production.relationships,
+                  production.people,
+                  production.functions
+                WHERE
+                  relationships.book_title_id = book_titles.id AND
+                  relationships.person_id = people.id AND
+                  relationships.function_id = functions.id AND
+                  book_titles.id = {0} ;""".format(theatertekst_id)
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return DataFrame([[str(tt[0]), tt[3], str(tt[2]) + "_" + str(tt[1])] for tt in tts],
+                         columns=["theatertekst_id", "relatie", "value"])
 
     def get_theatertekst_producties(self, theatertekst_id):
-        pass
+        sql = """SELECT
+                    book_titles.id,
+                    relationships.production_id
+                 FROM
+                    production.book_titles,
+                    production.relationships
+                WHERE
+                    relationships.book_title_id = book_titles.id
+                AND
+                    book_titles.id = {0};""".format(theatertekst_id)
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return DataFrame([[str(tt[0]), "gerelateerde_productie_id", str(tt[1])] for tt in tts if tt[1]],
+                         columns=["theatertekst_id", "relatie", "value"])
 
 triples = datakunstenbetriples()
 a = triples.get_productiegegevens(448736)
@@ -640,10 +713,14 @@ organisatiegegevens = concat([k, l, m, n, o])
 organisatiegegevens["organisatie_id"] = organisatiegegevens["organisatie_id"].apply(int)
 organisatiegegevens.to_csv("organisatiegegevens.csv", index=False)
 
-p = triples.get_theatertekstgegevens()
-q = triples.get_theatertekstgegevens()
-r = triples.get_theatertekstgegevens()
-s = triples.get_theatertekstgegevens()
-t = triples.get_theatertekstgegevens()
-theatertekstgegevens = concat(p, q, r, s, t)
+p = triples.get_theatertekstgegevens(428000)
+q = triples.get_theatertekstgegevens(412806)
+r = triples.get_theatertekstgegevens(426162)
+s = triples.get_theatertekstgegevens(415016)
+t = triples.get_theatertekstgegevens(427945)
+theatertekstgegevens = concat([p, q, r, s, t])
 theatertekstgegevens.to_csv("theatertekstgegevens.csv", index=False)
+
+u = triples.get_subsidiegegevens(16587)
+subsidiegegevens = concat([u])
+subsidiegegevens.to_csv("subsidiegegevens.csv", index=False)
