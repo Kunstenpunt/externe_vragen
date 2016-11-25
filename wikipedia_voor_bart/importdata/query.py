@@ -193,8 +193,7 @@ class datakunstenbetriples():
         gender = triples.get_persoon_gender(persoon_id)
         website = triples.get_persoon_website(persoon_id)
         archiefwebsite = triples.get_persoon_archiefwebsite(persoon_id)
-        subsidies = triples.get_persoon_subsidies(persoon_id)
-        return concat([naam, geboortedatum, sterftedatum, locatie, land, gender, website, archiefwebsite, subsidies])
+        return concat([naam, geboortedatum, sterftedatum, locatie, land, gender, website, archiefwebsite])
 
     def get_persoon_naam(self, persoon_id):
         sql = """
@@ -316,23 +315,6 @@ class datakunstenbetriples():
         os = self.cur.fetchone()
         return DataFrame([[persoon_id, "archiefwebsite", os[0]]], columns=["persoon_id", "relatie", "value"])
 
-    def get_persoon_subsidies(self, persoon_id):
-        sql = """
-        SELECT
-            subsidy_types.title_nl,
-            grants.period
-        FROM
-            production.grants
-        INNER JOIN
-            production.subsidy_types
-        ON
-            grants.subsidy_type_id = subsidy_types.id
-        WHERE grants.person_id = {0}
-        """.format(persoon_id)
-        self.cur.execute(sql)
-        os = self.cur.fetchall()
-        return DataFrame([[persoon_id, "subsidie (jaar)", o[0] + " (" + str(o[1]) + ")" if o else "NA"] for o in os], columns=["persoon_id", "relatie", "value"])
-
     def get_persoon_theaterteksten(self, persoon_id):
         sql = """
         SELECT
@@ -364,8 +346,7 @@ class datakunstenbetriples():
         organisatierelaties = triples.get_organisatie_relaties(organisatie_id)
         website = triples.get_organisatie_website(organisatie_id)
         archiefwebsite = triples.get_organisatie_archiefwebsite(organisatie_id)
-        subsidies = triples.get_organisatie_subsidies(organisatie_id)
-        return concat([naam, oprichtingsdatum, einddatum, start_activiteiten, einde_activiteiten, locatie, land, organisatierelaties, website, archiefwebsite, subsidies])
+        return concat([naam, oprichtingsdatum, einddatum, start_activiteiten, einde_activiteiten, locatie, land, organisatierelaties, website, archiefwebsite])
 
     def get_organisatie_naam(self, organisatie_id):
         sql = """
@@ -541,23 +522,6 @@ class datakunstenbetriples():
         os = self.cur.fetchone()
         return DataFrame([[organisatie_id, "archiefwebsite", os[0]]], columns=["organisatie_id", "relatie", "value"])
 
-    def get_organisatie_subsidies(self, organisatie_id):
-        sql = """
-        SELECT
-            subsidy_types.title_nl,
-            grants.period
-        FROM
-            production.grants
-        INNER JOIN
-            production.subsidy_types
-        ON
-            grants.subsidy_type_id = subsidy_types.id
-        WHERE grants.organisation_id = {0}
-        """.format(organisatie_id)
-        self.cur.execute(sql)
-        os = self.cur.fetchall()
-        return DataFrame([[organisatie_id, "subsidie (jaar)", o[0] + " (" + str(o[1]) + ")" if o else "NA"] for o in os], columns=["organisatie_id", "relatie", "value"])
-
     def get_organisatie_theaterteksten(self, organisatie_id):
         sql = """
         SELECT
@@ -645,7 +609,7 @@ class datakunstenbetriples():
                    book_titles.id = {0};""".format(theatertekst_id)
         self.cur.execute(sql)
         tts = self.cur.fetchall()
-        return DataFrame([[str(tt[0]), "gerelateerde_organisation_id", str(tt[1])] for tt in tts if tt[1]],
+        return DataFrame([[str(tt[0]), "over_organisation_id", str(tt[1])] for tt in tts if tt[1]],
                          columns=["theatertekst_id", "relatie", "value"])
 
     def get_theatertekst_personen(self, theatertekst_id):
@@ -682,8 +646,130 @@ class datakunstenbetriples():
                     book_titles.id = {0};""".format(theatertekst_id)
         self.cur.execute(sql)
         tts = self.cur.fetchall()
-        return DataFrame([[str(tt[0]), "gerelateerde_productie_id", str(tt[1])] for tt in tts if tt[1]],
+        return DataFrame([[str(tt[0]), "over_productie_id", str(tt[1])] for tt in tts if tt[1]],
                          columns=["theatertekst_id", "relatie", "value"])
+
+    def get_subsidiegegevens(self, subsidie_id):
+        subsidiesysteem = triples.get_subsidie_systeem(subsidie_id)
+        persoon = triples.get_subsidie_persoon(subsidie_id)
+        beginjaar = triples.get_subsidie_beginjaar(subsidie_id)
+        eindjaar = triples.get_subsidie_eindjaar(subsidie_id)
+        subsidietype = triples.get_subsidie_type(subsidie_id)
+        subsidiecommissie = triples.get_subsidie_commissie(subsidie_id)
+        instantie = triples.get_subsidie_instantie(subsidie_id)
+        return concat([subsidiesysteem, persoon, beginjaar, eindjaar, subsidietype, subsidiecommissie, instantie])
+
+    def get_subsidie_instantie(self, subsidie_id):
+        sql = """
+        SELECT
+          subsidy_sponsors.id,
+          subsidy_sponsors.title_nl
+        FROM
+          production.grants,
+          production.subsidy_sponsors,
+          production.subsidy_committees,
+          production.subsidy_types
+        WHERE
+          grants.subsidy_sponsor_id = subsidy_sponsors.id AND
+          grants.id = {0}""".format(subsidie_id)
+        self.cur.execute(sql)
+        tt = self.cur.fetchone()
+        return DataFrame([[str(subsidie_id), "subsidiërende instantie", str(tt[1]) + "_" + str(tt[0])]],
+                         columns=["subsidie_id", "relatie", "value"])
+
+    def get_subsidie_systeem(self, subsidie_id):
+        sql = """
+                SELECT
+                    grant_systems.id,
+                    grant_systems.description_nl
+                FROM
+                  production.grants,
+                  production.grant_systems
+                WHERE
+                  grants.grant_system_id = grant_systems.id AND
+                  grants.id = {0}""".format(subsidie_id)
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return DataFrame([[str(subsidie_id), "subsidiesysteem", str(tt[1]) + "_" + str(tt[0])] for tt in tts],
+                         columns=["subsidie_id", "relatie", "value"])
+
+    def get_subsidie_persoon(self, subsidie_id):
+        sql = """
+                SELECT
+                    people.id,
+                    people.full_name
+                FROM
+                  production.grants,
+                  production.people
+                WHERE
+                  grants.person_id = people.id AND
+                  grants.id = {0}""".format(subsidie_id)
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return DataFrame([[str(subsidie_id), "persoon", str(tt[1]) + "_" + str(tt[0])] for tt in tts],
+                         columns=["subsidie_id", "relatie", "value"])
+
+    def get_subsidie_beginjaar(self, subsidie_id):
+        sql = """
+                SELECT
+                  date_isaars.year
+                FROM
+                  production.grants,
+                  production.date_isaars
+                WHERE
+                  grants.begin_date_id = date_isaars.id AND
+                  grants.id = {0};""".format(subsidie_id)
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return DataFrame([[str(subsidie_id), "beginjaar", str(tt[0])] for tt in tts],
+                         columns=["subsidie_id", "relatie", "value"])
+
+    def get_subsidie_eindjaar(self, subsidie_id):
+        sql = """
+                SELECT
+                  date_isaars.year
+                FROM
+                  production.grants,
+                  production.date_isaars
+                WHERE
+                  grants.end_date_id = date_isaars.id AND
+                          grants.id = {0};""".format(subsidie_id)
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return DataFrame([[str(subsidie_id), "eindjaar", str(tt[0])] for tt in tts],
+                         columns=["subsidie_id", "relatie", "value"])
+
+    def get_subsidie_type(self, subsidie_id):
+        sql = """
+                SELECT
+                    subsidy_types.id,
+                    subsidy_types.title_nl
+                FROM
+                  production.grants,
+                  production.subsidy_types
+                WHERE
+                  grants.subsidy_type_id = subsidy_types.id AND
+                  grants.id = {0}""".format(subsidie_id)
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return DataFrame([[str(subsidie_id), "subsidietype", str(tt[1]) + "_" + str(tt[0])] for tt in tts],
+                         columns=["subsidie_id", "relatie", "value"])
+
+    def get_subsidie_commissie(self, subsidie_id):
+        sql = """
+                SELECT
+                    subsidy_committees.id,
+                    subsidy_committees.title_nl
+                FROM
+                  production.grants,
+                  production.subsidy_committees
+                WHERE
+                  grants.subsidy_committee_id = subsidy_committees.id AND
+                  grants.id = {0}""".format(subsidie_id)
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return DataFrame([[str(subsidie_id), "subsidiecomite", str(tt[1]) + "_" + str(tt[0])] for tt in tts],
+                         columns=["subsidie_id", "relatie", "value"])
 
 triples = datakunstenbetriples()
 a = triples.get_productiegegevens(448736)
