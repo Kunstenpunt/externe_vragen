@@ -4,7 +4,7 @@ from pandas import DataFrame
 
 # lees de inloggegevens in
 cfg = ConfigParser()
-cfg.read("db.cfg")
+cfg.read("../db.cfg")
 
 # connecteer met de databank
 knst = psycopg2.connect(host=cfg['db']['host'], port=cfg['db']['port'],
@@ -79,7 +79,7 @@ for i, productionid in enumerate(producties):
         print(i, "of", len(producties))
     sql = """
     SELECT DISTINCT
-      people.id, people.full_name
+      people.id, people.full_name, gender_id
     FROM
       production.productions,
       production.relationships,
@@ -91,7 +91,7 @@ for i, productionid in enumerate(producties):
     """.format(productionid[0])
     knst_cur.execute(sql)
     people_in_production = knst_cur.fetchall()
-    for uid, name in people_in_production:
+    for uid, name, gender in people_in_production:
             sql = """
             SELECT DISTINCT COUNT(relationships.production_id)
             FROM production.relationships
@@ -99,6 +99,6 @@ for i, productionid in enumerate(producties):
             """.format(uid)
             knst_cur.execute(sql)
             c = knst_cur.fetchone()[0]
-            personen.add((name, c))
+            personen.add((name, gender, c))
 
-DataFrame(list(personen), columns=["Lijst van personen", "Count van producties"]).to_csv("schrijflijst/lijst_van_personen.csv")
+DataFrame(list(personen), columns=["Lijst van personen", "Gender", "Count van producties"]).to_csv("lijst_van_personen.csv")
