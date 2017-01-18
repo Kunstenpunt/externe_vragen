@@ -71,7 +71,7 @@ class datakunstenbetriples():
         os = self.cur.fetchall()
         return DataFrame([[o[0], o[2] + "_" + str(o[1]), o[4] + "_" + str(o[3])] for o in os], columns=["productie_id", "relatie", "value"])
 
-    def get_productie_premieredatum_en_locatie(self, productie_id):
+    def get_productie_premieredatum(self, productie_id):
         sql = """
         SELECT
             date_isaars.year,
@@ -95,7 +95,34 @@ class datakunstenbetriples():
         """.format(productie_id)
         self.cur.execute(sql)
         dt = self.cur.fetchone()
-        return DataFrame([[productie_id, "premiere", datetime(dt[0], dt[1], dt[2]).isoformat() + " (" + dt[3] + ", " + dt[4] + ")"]], columns=["productie_id", "relatie", "value"])
+        return DataFrame([[productie_id, "premiere_datum", datetime(dt[0], dt[1], dt[2]).isoformat()]], columns=["productie_id", "relatie", "value"])
+
+    def get_productie_premierelocatie(self, productie_id):
+        sql = """
+        SELECT
+            date_isaars.year,
+            date_isaars.month,
+            date_isaars.day,
+            venues.name,
+            venues.city
+        FROM
+          production.productions,
+          production.shows,
+          production.show_types,
+          production.date_isaars,
+          production.venues
+        WHERE
+          shows.venue_id = venues.id AND
+          shows.date_id = date_isaars.id AND
+          shows.show_type_id = show_types.id AND
+          show_types.name_nl = 'première' AND
+          shows.production_id = productions.id AND
+          productions.id = {0};
+        """.format(productie_id)
+        self.cur.execute(sql)
+        dt = self.cur.fetchone()
+        return DataFrame([[productie_id, "premiere_locatie", dt[3] + ", " + dt[4]]], columns=["productie_id", "relatie", "value"])
+
 
     def get_productie_theaterteksten(self, productie_id):
         sql = """
@@ -180,9 +207,10 @@ class datakunstenbetriples():
         tit = triples.get_productie_titel(productie_id)
         pfo = triples.get_productie_functie_en_organisatie(productie_id)
         pfp = triples.get_productie_functie_en_persoon(productie_id)
-        ppremieredatumlocatie = triples.get_productie_premieredatum_en_locatie(productie_id)
+        ppremieredatum = triples.get_productie_premieredatum(productie_id)
+        ppremierelocatie = triples.get_productie_premierelocatie(productie_id)
         speelperiode = triples.get_productie_speelperiode(productie_id)
-        return concat([tit, pfo, pfp, ppremieredatumlocatie, speelperiode])
+        return concat([tit, pfo, pfp, ppremieredatum, ppremierelocatie, speelperiode])
 
     def get_persoongegevens(self, persoon_id):
         naam = triples.get_persoon_naam(persoon_id)
@@ -649,6 +677,15 @@ class datakunstenbetriples():
         return DataFrame([[str(tt[0]), "over_productie_id", str(tt[1])] for tt in tts if tt[1]],
                          columns=["theatertekst_id", "relatie", "value"])
 
+    def get_subsidie_ids(self):
+        sql = """
+        SELECT id
+        FROM production.grants
+        """
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return [tt[0] for tt in tts]
+
     def get_subsidiegegevens(self, subsidie_id):
         subsidiesysteem = triples.get_subsidie_systeem(subsidie_id)
         persoon = triples.get_subsidie_persoon(subsidie_id)
@@ -781,32 +818,36 @@ productiegegevens = concat([a, b, c, d, e])
 productiegegevens["productie_id"] = productiegegevens["productie_id"].apply(int)
 productiegegevens.to_csv("productiegegevens.csv", index=False)
 
-f = triples.get_persoongegevens(1878826)
-g = triples.get_persoongegevens(1909965)
-h = triples.get_persoongegevens(1878235)
-i = triples.get_persoongegevens(1879952)
-j = triples.get_persoongegevens(1884464)
-persoongegevens = concat([f, g, h, i, j])
-persoongegevens["persoon_id"] = persoongegevens["persoon_id"].apply(int)
-persoongegevens.to_csv("persoongegevens.csv", index=False)
-
-k = triples.get_organisatiegegevens(370945)
-l = triples.get_organisatiegegevens(363214)
-m = triples.get_organisatiegegevens(363497)
-n = triples.get_organisatiegegevens(379035)
-o = triples.get_organisatiegegevens(374188)
-organisatiegegevens = concat([k, l, m, n, o])
-organisatiegegevens["organisatie_id"] = organisatiegegevens["organisatie_id"].apply(int)
-organisatiegegevens.to_csv("organisatiegegevens.csv", index=False)
-
-p = triples.get_theatertekstgegevens(428000)
-q = triples.get_theatertekstgegevens(412806)
-r = triples.get_theatertekstgegevens(426162)
-s = triples.get_theatertekstgegevens(415016)
-t = triples.get_theatertekstgegevens(427945)
-theatertekstgegevens = concat([p, q, r, s, t])
-theatertekstgegevens.to_csv("theatertekstgegevens.csv", index=False)
-
-u = triples.get_subsidiegegevens(16587)
-subsidiegegevens = concat([u])
-subsidiegegevens.to_csv("subsidiegegevens.csv", index=False)
+# f = triples.get_persoongegevens(1878826)
+# g = triples.get_persoongegevens(1909965)
+# h = triples.get_persoongegevens(1878235)
+# i = triples.get_persoongegevens(1879952)
+# j = triples.get_persoongegevens(1884464)
+# persoongegevens = concat([f, g, h, i, j])
+# persoongegevens["persoon_id"] = persoongegevens["persoon_id"].apply(int)
+# persoongegevens.to_csv("persoongegevens.csv", index=False)
+#
+# k = triples.get_organisatiegegevens(370945)
+# l = triples.get_organisatiegegevens(363214)
+# m = triples.get_organisatiegegevens(363497)
+# n = triples.get_organisatiegegevens(379035)
+# o = triples.get_organisatiegegevens(374188)
+# organisatiegegevens = concat([k, l, m, n, o])
+# organisatiegegevens["organisatie_id"] = organisatiegegevens["organisatie_id"].apply(int)
+# organisatiegegevens.to_csv("organisatiegegevens.csv", index=False)
+#
+# p = triples.get_theatertekstgegevens(428000)
+# q = triples.get_theatertekstgegevens(412806)
+# r = triples.get_theatertekstgegevens(426162)
+# s = triples.get_theatertekstgegevens(415016)
+# t = triples.get_theatertekstgegevens(427945)
+# theatertekstgegevens = concat([p, q, r, s, t])
+# theatertekstgegevens.to_csv("theatertekstgegevens.csv", index=False)
+#
+# subsidiegegevens_list = []
+# for subsidie_id in triples.get_subsidie_ids():
+#     print(subsidie_id)
+#     u = triples.get_subsidiegegevens(subsidie_id)
+#     subsidiegegevens_list.append(u)
+# subsidiegegevens = concat(subsidiegegevens_list)
+# subsidiegegevens.to_csv("subsidiegegevens.csv", index=False)

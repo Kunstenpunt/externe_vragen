@@ -6,7 +6,8 @@ productie_id,relatie,value
 448736,tekst_11631,Nelle De Maeyer_1909946
 448736,tekst_11631,Riet Wille_1880200
 448736,coaching_11746,Stefan Perceval_1888730
-448736,premiere,"2011-09-24T00:00:00 (Cultuurcentrum Merksem, Merksem)"
+448736,premiere_datum,2011-09-24T00:00:00
+448736,premiere_locatie,"Cultuurcentrum Merksem, Merksem"
 448736,speelperiode,2011-2014
 451020,titel,Het land Nod
 451020,gezelschap_12173,FC Bergman_372075
@@ -17,7 +18,8 @@ productie_id,relatie,value
 451020,van en met_12014,Matteo Simoni_1920330
 451020,van en met_12014,Thomas Verstraeten_1923649
 451020,van en met_12014,Marie Vinck_1898982
-451020,premiere,"2015-08-11T00:00:00 (Maaspoort Sports & Events, 's-Hertogenbosch)"
+451020,premiere_datum,2015-08-11T00:00:00
+451020,premiere_locatie,"Maaspoort Sports & Events, 's-Hertogenbosch"
 449330,speelperiode,2014-2017
 438835,titel,Bezonken rood
 438835,coproducent_12174,Het Toneelhuis_371481
@@ -35,7 +37,8 @@ productie_id,relatie,value
 438835,kostuumontwerp_11711,Katelijne Damen_1879633
 438835,video realisatie_11625,Arjen Klerkx_1914157
 438835,dramaturgie_11543,Erwin Jans_1883376
-438835,premiere,"2004-10-16T00:00:00 (Ro theater, Rotterdam)"
+438835,premiere_datum,2004-10-16T00:00:00
+438835,premiere_locatie,"Ro theater, Rotterdam"
 438835,speelperiode,2004-2017
 451382,titel,De welwillenden
 451382,producent_12176,Toneelhuis_363214
@@ -59,7 +62,8 @@ productie_id,relatie,value
 451382,met_11741,Hans Kesting_1895922
 451382,met_11741,Jip van den Dool_1935040
 451382,met_11741,Aus Greidanus jr._1900957
-451382,premiere,"2016-03-10T00:00:00 (Bourla, Antwerpen)"
+451382,premiere_datum,2016-03-10T00:00:00
+451382,premiere_locatie,"Bourla, Antwerpen"
 451382,speelperiode,2015-2017
 440557,titel,Deurdedeurdeur
 440557,gezelschap_12173,SKaGeN_369117
@@ -79,6 +83,7 @@ productie_id,relatie,value
 440557,van_11995,Clara van den Broek_1897388
 440557,van_11995,Wannes Deneer_1920700
 440557,dramaturgie_11543,Eline Van Hoye_1911757
-440557,premiere,"2008-03-07T00:00:00 (Beursschouwburg, Brussel)"
+440557,premiere_datum,2008-03-07T00:00:00
+440557,premiere_locatie,"Beursschouwburg, Brussel"
 440557,speelperiode,2007-2009
 440557,speelperiode,2014-2015
