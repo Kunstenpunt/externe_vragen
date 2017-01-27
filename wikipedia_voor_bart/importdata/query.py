@@ -689,29 +689,38 @@ class datakunstenbetriples():
     def get_subsidiegegevens(self, subsidie_id):
         subsidiesysteem = triples.get_subsidie_systeem(subsidie_id)
         persoon = triples.get_subsidie_persoon(subsidie_id)
+        organisatie = triples.get_subsidie_organisatie(subsidie_id)
         beginjaar = triples.get_subsidie_beginjaar(subsidie_id)
         eindjaar = triples.get_subsidie_eindjaar(subsidie_id)
         subsidietype = triples.get_subsidie_type(subsidie_id)
         subsidiecommissie = triples.get_subsidie_commissie(subsidie_id)
         instantie = triples.get_subsidie_instantie(subsidie_id)
-        return concat([subsidiesysteem, persoon, beginjaar, eindjaar, subsidietype, subsidiecommissie, instantie])
+        return concat([subsidiesysteem, persoon, organisatie, beginjaar, eindjaar, subsidietype, subsidiecommissie, instantie])
 
     def get_subsidie_instantie(self, subsidie_id):
         sql = """
         SELECT
           subsidy_sponsors.id,
-          subsidy_sponsors.title_nl
+          subsidy_sponsors.title_nl,
+          date_isaars.year
         FROM
-          production.grants,
-          production.subsidy_sponsors,
-          production.subsidy_committees,
-          production.subsidy_types
+          production.grants
+        JOIN production.subsidy_sponsors
+        ON grants.subsidy_sponsor_id = subsidy_sponsors.id
+        LEFT JOIN production.date_isaars
+        ON date_isaars.id = grants.begin_date_id
         WHERE
-          grants.subsidy_sponsor_id = subsidy_sponsors.id AND
           grants.id = {0}""".format(subsidie_id)
         self.cur.execute(sql)
         tt = self.cur.fetchone()
-        return DataFrame([[str(subsidie_id), "subsidiërende instantie", str(tt[1]) + "_" + str(tt[0])]],
+        beginjaar = 2014 if not tt[2] else tt[2]
+        if 1993 <= beginjaar < 2006:
+            corrected_instantie = "Podiumkunstendecreet_10"
+        elif 1975 <= beginjaar < 1993:
+            corrected_instantie = "Theaterdecreet_11"
+        else:
+            corrected_instantie = "Kunstendecreet_1"
+        return DataFrame([[str(subsidie_id), "subsidiërende instantie", corrected_instantie]],
                          columns=["subsidie_id", "relatie", "value"])
 
     def get_subsidie_systeem(self, subsidie_id):
@@ -727,7 +736,7 @@ class datakunstenbetriples():
                   grants.id = {0}""".format(subsidie_id)
         self.cur.execute(sql)
         tts = self.cur.fetchall()
-        return DataFrame([[str(subsidie_id), "subsidiesysteem", str(tt[1]) + "_" + str(tt[0])] for tt in tts],
+        return DataFrame([[str(subsidie_id), "subsidiesysteem", str(tt[1]).strip() + "_" + str(tt[0])] for tt in tts],
                          columns=["subsidie_id", "relatie", "value"])
 
     def get_subsidie_persoon(self, subsidie_id):
@@ -745,6 +754,23 @@ class datakunstenbetriples():
         tts = self.cur.fetchall()
         return DataFrame([[str(subsidie_id), "persoon", str(tt[1]) + "_" + str(tt[0])] for tt in tts],
                          columns=["subsidie_id", "relatie", "value"])
+
+    def get_subsidie_organisatie(self, subsidie_id):
+        sql = """
+                SELECT
+                    organisations.id,
+                    organisations.name
+                FROM
+                  production.grants,
+                  production.organisations
+                WHERE
+                  grants.organisation_id = organisations.id AND
+                  grants.id = {0}""".format(subsidie_id)
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return DataFrame([[str(subsidie_id), "organisatie", str(tt[1]) + "_" + str(tt[0])] for tt in tts],
+                         columns=["subsidie_id", "relatie", "value"])
+
 
     def get_subsidie_beginjaar(self, subsidie_id):
         sql = """
@@ -809,14 +835,14 @@ class datakunstenbetriples():
                          columns=["subsidie_id", "relatie", "value"])
 
 triples = datakunstenbetriples()
-a = triples.get_productiegegevens(448736)
-b = triples.get_productiegegevens(451020)
-c = triples.get_productiegegevens(438835)
-d = triples.get_productiegegevens(451382)
-e = triples.get_productiegegevens(440557)
-productiegegevens = concat([a, b, c, d, e])
-productiegegevens["productie_id"] = productiegegevens["productie_id"].apply(int)
-productiegegevens.to_csv("productiegegevens.csv", index=False)
+# a = triples.get_productiegegevens(448736)
+# b = triples.get_productiegegevens(451020)
+# c = triples.get_productiegegevens(438835)
+# d = triples.get_productiegegevens(451382)
+# e = triples.get_productiegegevens(440557)
+# productiegegevens = concat([a, b, c, d, e])
+# productiegegevens["productie_id"] = productiegegevens["productie_id"].apply(int)
+# productiegegevens.to_csv("productiegegevens.csv", index=False)
 
 # f = triples.get_persoongegevens(1878826)
 # g = triples.get_persoongegevens(1909965)
@@ -844,10 +870,10 @@ productiegegevens.to_csv("productiegegevens.csv", index=False)
 # theatertekstgegevens = concat([p, q, r, s, t])
 # theatertekstgegevens.to_csv("theatertekstgegevens.csv", index=False)
 #
-# subsidiegegevens_list = []
-# for subsidie_id in triples.get_subsidie_ids():
-#     print(subsidie_id)
-#     u = triples.get_subsidiegegevens(subsidie_id)
-#     subsidiegegevens_list.append(u)
-# subsidiegegevens = concat(subsidiegegevens_list)
-# subsidiegegevens.to_csv("subsidiegegevens.csv", index=False)
+subsidiegegevens_list = []
+for subsidie_id in triples.get_subsidie_ids():
+    print(subsidie_id)
+    u = triples.get_subsidiegegevens(subsidie_id)
+    subsidiegegevens_list.append(u)
+subsidiegegevens = concat(subsidiegegevens_list)
+subsidiegegevens.to_csv("subsidiegegevens.csv", index=False)
