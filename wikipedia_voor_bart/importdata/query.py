@@ -104,7 +104,7 @@ class datakunstenbetriples():
             date_isaars.month,
             date_isaars.day,
             venues.name,
-            venues.city
+            venues.id
         FROM
           production.productions,
           production.shows,
@@ -121,7 +121,7 @@ class datakunstenbetriples():
         """.format(productie_id)
         self.cur.execute(sql)
         dt = self.cur.fetchone()
-        return DataFrame([[productie_id, "premiere_locatie", dt[3] + ", " + dt[4]]], columns=["productie_id", "relatie", "value"])
+        return DataFrame([[productie_id, "premiere_locatie", dt[3] + "_" + str(dt[4])]], columns=["productie_id", "relatie", "value"])
 
 
     def get_productie_theaterteksten(self, productie_id):
@@ -834,6 +834,105 @@ class datakunstenbetriples():
         return DataFrame([[str(subsidie_id), "subsidiecomite", str(tt[1]) + "_" + str(tt[0])] for tt in tts],
                          columns=["subsidie_id", "relatie", "value"])
 
+    def get_premierelocatie_ids(self):
+        sql = """
+            SELECT DISTINCT
+              shows.venue_id
+            FROM
+              production.shows
+            JOIN production.date_isaars
+            ON shows.date_id = date_isaars.id
+            WHERE
+              shows.show_type_id = 441 AND
+              date_isaars.year >= 1993
+            """
+        self.cur.execute(sql)
+        tts = self.cur.fetchall()
+        return [tt[0] for tt in tts if tt[0] is not None]
+
+    def get_premierelocatiegegevens(self, premierelocatie_id):
+        naam = triples.get_premierelocatie_naam(premierelocatie_id)
+        adres = triples.get_premierelocatie_adres(premierelocatie_id)
+        stad = triples.get_premierelocatie_stad(premierelocatie_id)
+        zip = triples.get_premierelocatie_zip(premierelocatie_id)
+        land = triples.get_premierelocatie_land(premierelocatie_id)
+        return concat([naam, adres, stad, zip, land])
+
+    def get_premierelocatie_naam(self, premierelocatie_id):
+        sql = """
+            SELECT
+                venues.name
+            FROM
+              production.venues
+            WHERE
+              venues.id = {0}""".format(premierelocatie_id)
+        self.cur.execute(sql)
+        tt = self.cur.fetchone()
+        return DataFrame([[str(premierelocatie_id), "naam", str(tt[0])]],
+                         columns=["premierelocatie_id", "relatie", "value"])
+
+    def get_premierelocatie_adres(self, premierelocatie_id):
+        sql = """
+            SELECT
+                venues.address_line_1
+            FROM
+              production.venues
+            WHERE
+              venues.id = {0}""".format(premierelocatie_id)
+        self.cur.execute(sql)
+        tt = self.cur.fetchone()
+        return DataFrame([[str(premierelocatie_id), "adres", str(tt[0])]],
+                         columns=["premierelocatie_id", "relatie", "value"])
+
+    def get_premierelocatie_stad(self, premierelocatie_id):
+        sql = """
+            SELECT
+                locations.city_nl
+            FROM
+              production.venues,
+              production.locations
+            WHERE
+              locations.id = venues.location_id AND
+              venues.id = {0}""".format(premierelocatie_id)
+        self.cur.execute(sql)
+        tt = self.cur.fetchone()
+        return DataFrame([[str(premierelocatie_id), "stad", str(tt[0])]],
+                         columns=["premierelocatie_id", "relatie", "value"])
+
+    def get_premierelocatie_zip(self, premierelocatie_id):
+        sql = """
+            SELECT
+                locations.zip_code
+            FROM
+              production.venues,
+              production.locations
+            WHERE
+              locations.id = venues.location_id AND
+              venues.id = {0}""".format(premierelocatie_id)
+        self.cur.execute(sql)
+        tt = self.cur.fetchone()
+        return DataFrame([[str(premierelocatie_id), "postcode", str(tt[0])]],
+                         columns=["premierelocatie_id", "relatie", "value"])
+
+
+    def get_premierelocatie_land(self, premierelocatie_id):
+        sql = """
+            SELECT
+                countries.name_nl
+            FROM
+              production.venues,
+              production.locations,
+              production.countries
+            WHERE
+              locations.id = venues.location_id AND
+              countries.id = locations.country_id AND
+              venues.id = {0}""".format(premierelocatie_id)
+        self.cur.execute(sql)
+        tt = self.cur.fetchone()
+        if tt is not None:
+            return DataFrame([[str(premierelocatie_id), "land", str(tt[0])]],
+                         columns=["premierelocatie_id", "relatie", "value"])
+
 triples = datakunstenbetriples()
 # a = triples.get_productiegegevens(448736)
 # b = triples.get_productiegegevens(451020)
@@ -843,6 +942,14 @@ triples = datakunstenbetriples()
 # productiegegevens = concat([a, b, c, d, e])
 # productiegegevens["productie_id"] = productiegegevens["productie_id"].apply(int)
 # productiegegevens.to_csv("productiegegevens.csv", index=False)
+
+premierelocaties_list = []
+for premierelocatie_id in triples.get_premierelocatie_ids():
+    print(premierelocatie_id)
+    a = triples.get_premierelocatiegegevens(premierelocatie_id)
+    premierelocaties_list.append(a)
+premierelocaties = concat(premierelocaties_list)
+premierelocaties.to_csv("premierelocaties.csv", index=False)
 
 # f = triples.get_persoongegevens(1878826)
 # g = triples.get_persoongegevens(1909965)
@@ -870,10 +977,10 @@ triples = datakunstenbetriples()
 # theatertekstgegevens = concat([p, q, r, s, t])
 # theatertekstgegevens.to_csv("theatertekstgegevens.csv", index=False)
 #
-subsidiegegevens_list = []
-for subsidie_id in triples.get_subsidie_ids():
-    print(subsidie_id)
-    u = triples.get_subsidiegegevens(subsidie_id)
-    subsidiegegevens_list.append(u)
-subsidiegegevens = concat(subsidiegegevens_list)
-subsidiegegevens.to_csv("subsidiegegevens.csv", index=False)
+# subsidiegegevens_list = []
+# for subsidie_id in triples.get_subsidie_ids():
+#     print(subsidie_id)
+#     u = triples.get_subsidiegegevens(subsidie_id)
+#     subsidiegegevens_list.append(u)
+# subsidiegegevens = concat(subsidiegegevens_list)
+# subsidiegegevens.to_csv("subsidiegegevens.csv", index=False)
